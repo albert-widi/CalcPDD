@@ -1,0 +1,423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Reminder Plaza Toyota - HOME</title>
+<link href="main.css" type="text/css" rel="stylesheet" />
+<script type='Text/JavaScript' src='scw.js'></script>
+<script type='Text/JavaScript' src='algoPDD.js'></script>
+<script type="text/javascript">
+	function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
+	function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
+	function eTimeCKD(a){ 
+							if(a.value == "ckd") {
+													document.getElementById("timeCKD").disabled=false; 
+												 	document.getElementById("timeCKD").selectedIndex = 1;
+												 }
+							else {
+									document.getElementById("timeCKD").disabled=true;
+									document.getElementById("timeCKD").selectedIndex = 0;
+								 }
+						}
+	function eTglMDP(a){
+							if(a.value == "mdp") {
+													document.getElementById("dateMDP").disabled=false;
+												 }
+							else {
+									document.getElementById("dateMDP").disabled=true;
+								 	document.getElementById("dateMDP").value = "Tanggal MDP";
+								 }
+							
+						}
+</script>
+</head>
+
+<body>
+	<div id="container">
+        <div id="top"> 
+            <div  align="center"><img src="logo plato.jpg" width="215" height="43"/></div>
+            <div id="menubar">
+               <ul>
+               	<li><a href="HOME.html">CALCULATOR</a></li>
+                <li><a href="List Customer.html">LIST</a></li>
+                <li><a href="#">CALENDER</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="content-wrap">
+        	<div id="input-nya">
+        	<form name="formPDD" action="" method="post">
+            	<table>
+                	<tr>
+                        <td colspan="3" align="center">
+                        	<input type="radio" name="paramMDP" id="mdp" value="mdp" onclick="eTglMDP(this)" />MDP 
+                            <input value="Tanggal MDP" name="dateMDP" id="dateMDP" type="text" disabled="disabled" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="paramMDP" id="ready" value="ready" onclick="eTglMDP(this)" />READY &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                	<tr>
+                        <td>
+                        	Nomor/Tanggal SPK
+                        </td>
+                        <td>
+                        	:
+                        </td>
+                        <td>
+                        	<input type="text" value="No SPK" name="nomorSPK" size="5" maxlength="5" onfocus="blank(this)" onblur="unblank(this)" />
+                            <input value="Tanggal Ready" name="dateReady" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        	Nama Pelanggan
+                        </td>
+                        <td>
+                        	:
+                        </td>
+                        <td>
+                        	<input value="Nama" type="text" name="namaPelanggan" size="32" onfocus="blank(this)" onblur="unblank(this)" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        	Telepon/HP
+                        </td>
+                        <td>
+                        	:
+                        </td>
+                        <td>
+                        	<input value="Telepon" type="text" name="noTelepon" size="12" onfocus="blank(this)" onblur="unblank(this)" />
+                            <input value="HP" type="text" name="noHP" size="13" onfocus="blank(this)" onblur="unblank(this)" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        	Type Kendaraan
+                        </td>
+                        <td>
+                        	:
+                        </td>
+                        <td>
+                        	<input value="Nama Kendaraan" type="text" name="namaKendaraan" size="32" onfocus="blank(this)" onblur="unblank(this)" /><br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                        	
+                        </td>
+                        <td>&nbsp;
+                        	
+                        </td>
+                        <td>
+                        	<input type="radio" name="paramTipe" value="ckd" onclick="eTimeCKD(this)" /><span>CKD</span>
+                            &nbsp;&nbsp;
+                            <select id="timeCKD" disabled="disabled">
+                                <option value="" style="display:none;" selected="selected">Pilih hari</option>
+                                <option value="4">4 Hari</option>
+                                <option value="6">6 Hari</option>
+                            </select>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="paramTipe" value="cbu" onclick="eTimeCKD(this)" /><span>CBU</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        	Warna Kendaraan
+                        </td>
+                        <td>
+                        	:
+                        </td>
+                        <td>
+                        	<input value="Warna Kendaraan" type="text" name="warnaKendaraan" size="32" onfocus="blank(this)" onblur="unblank(this)" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        	Cara Pembayaran
+                        </td>
+                        <td>
+                        	:
+                        </td>
+                        <td>
+                        	<input type="radio" name="paramPembayaran" value="cash" /><span>CASH</span>
+                            <input type="radio" name="paramPembayaran" value="tafs" /><span>TAFS</span>
+                            <input type="radio" name="paramPembayaran" value="acc" /><span>ACC</span>
+                            <input type="radio" name="paramPembayaran" value="oto" /><span>OTO</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                        	
+                        </td>
+                        <td>&nbsp;
+                        	
+                        </td>
+                        <td>
+                            <input value="Lain-lain" type="text" name="paramPembayaran"  onfocus="blank(this)" onblur="unblank(this)" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        	Janji Pelunasan
+                        </td>
+                        <td>
+                        	:
+                        </td>
+                        <td>
+                        	<input value="Tanggal Pelunasan" name="dateLunas" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        	Rencana Penyerahan Kendaraan
+                        </td>
+                        <td>
+                        	:
+                        </td>
+                        <td>
+                        	<input value="Tanggal Penyerahan" name="dateSerah" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" align="center">
+                        	<input type="radio" name="paramSTNK" value="nostnk" />TANPA STNK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="paramSTNK" value="stnk" />DENGAN STNK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="paramPilPol" value="PilPol" /><span style="font-size:10px;">PILIH NOMOR POLISI</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" align="center">
+                        	<input type="button" size="30" value="Submit" style="width:180px; height:50px;" onClick="testResults(this.form)"  />
+                        </td>
+                    </tr>
+                </table>	 
+            </form>
+            </div>
+            <br />
+        	<div id="profil" align="center">
+            	
+            	<table id="tablePDD" border="1px" width="600px" height="480px">
+                	<tr>
+                    	<th>
+                        	<span id="h1"> </span>
+                        </th>
+                        <th>                    	
+                            <span id="h2"> </span>
+                        </th>
+                        <th>
+                        	<span id="h3"> </span> 
+                        </th>
+                        <th>
+                        	<span id="h4"> </span> 
+                        </th>
+                        <th>
+                        	<span id="h5"> </span> 
+                        </th>
+                        <th>
+                            <span id="h6"> </span>
+                        </th>
+                        <th>
+                            <span id="h7"> </span>
+                        </th>
+                    </tr>
+                	<tr>
+                    	<td id="d1">
+                        	<div id="mini-Date"><span>1</span></div>
+                            <p id="isi1"></p>
+   
+                        </td>
+                        <td id="d2">
+                        	<div id="mini-Date"><span>2</span></div>
+                            <p id="isi2"></p>    
+                        </td>
+                        <td id="d3">
+                        	<div id="mini-Date"><span>3</span></div>
+                            <p id="isi3"></p>
+                        </td>
+                        <td id="d4">
+                        	<div id="mini-Date"><span>4</span></div>
+                            <p id="isi4"></p>
+                        </td>
+                        <td id="d5">
+                        	<div id="mini-Date"><span>5</span></div>
+                            <p id="isi5"></p>
+                        </td>
+                        <td id="d6">
+                        	<div id="mini-Date"><span>6</span></div>
+                            <p id="isi6"></p>
+                        </td>
+                        <td id="d7">
+                        	<div id="mini-Date"><span>7</span></div>
+                            <p id="isi7"></p>
+                        </td>
+                    </tr>
+                   <tr>
+                    	<td id="d8">
+                        	<div id="mini-Date"><span>8</span></div>
+                            <p id="isi8"></p>
+                        </td>
+                        <td id="d9">
+                        	<div id="mini-Date"><span>9</span></div>
+                            <p id="isi9"></p>
+                        </td>
+                        <td id="d10">
+                        	<div id="mini-Date"><span>10</span></div>
+                            <p id="isi10"></p>
+                        </td>
+                        <td id="d11">
+                        	<div id="mini-Date"><span>11</span></div>
+                            <p id="isi11"></p>
+                        </td>
+                        <td id="d12">
+                        	<div id="mini-Date"><span>12</span></div>
+                            <p id="isi12"></p>
+                        </td>
+                        <td id="d13">
+                        	<div id="mini-Date"><span>13</span></div>
+                            <p id="isi13"></p>
+                        </td>
+                        <td id="d14">
+                        	<div id="mini-Date"><span>14</span></div>
+                            <p id="isi14"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td id="d15">
+                        	<div id="mini-Date"><span>15</span></div>
+                            <p id="isi15"></p>
+                        </td>
+                        <td id="d16">
+                        	<div id="mini-Date"><span>16</span></div>
+                            <p id="isi16"></p>
+                        </td>
+                        <td id="d17">
+                        	<div id="mini-Date"><span>17</span></div>
+                            <p id="isi17"></p>
+                        </td>
+                        <td id="d18">
+                        	<div id="mini-Date"><span>18</span></div>
+                            <p id="isi18"></p>
+                        </td>
+                        <td id="d19">
+                        	<div id="mini-Date"><span>19</span></div>
+                            <p id="isi19"></p>
+                        </td>
+                        <td id="d20">
+                        	<div id="mini-Date"><span>20</span></div>
+                            <p id="isi20"></p>
+                        </td>
+                        <td id="d21">
+                        	<div id="mini-Date"><span>21</span></div>
+                            <p id="isi21"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td id="d22">
+                        	<div id="mini-Date"><span>22</span></div>
+                            <p id="isi22"></p>
+                        </td>
+                        <td id="d23">
+                        	<div id="mini-Date"><span>23</span></div>
+                            <p id="isi23"></p>
+                        </td>
+                        <td id="d24">
+                        	<div id="mini-Date"><span>24</span></div>
+                            <p id="isi24"></p>
+                        </td>
+                        <td id="d25">
+                        	<div id="mini-Date"><span>25</span></div>
+                            <p id="isi25"></p>
+                        </td>
+                        <td id="d26">
+                        	<div id="mini-Date"><span>26</span></div>
+                            <p id="isi26"></p>
+                        </td>
+                        <td id="d27">
+                        	<div id="mini-Date"><span>27</span></div>
+                            <p id="isi27"></p>
+                        </td>
+                        <td id="d28">
+                        	<div id="mini-Date"><span>28</span></div>
+                            <p id="isi28"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td id="d29">
+                        	<div id="mini-Date"><span>29</span></div>
+                            <p id="isi29"></p>
+                        </td>
+                        <td id="d30">
+                        	<div id="mini-Date"><span>30</span></div>
+                            <p id="isi30"></p>
+                        </td>
+                        <td id="d31">
+                        	<div id="mini-Date"><span>31</span></div>
+                            <p id="isi31"></p>
+                        </td>
+                        <td id="d32">
+                        	<div id="mini-Date"><span>1</span></div>
+                            <p id="isi32"></p>
+                        </td>
+                        <td id="d33">
+                        	<div id="mini-Date"><span>2</span></div>
+                            <p id="isi33"></p>
+                        </td>
+                        <td id="d34">
+                        	<div id="mini-Date"><span>3</span></div>
+                            <p id="isi34"></p>
+                        </td>
+                        <td id="d35">
+                        	<div id="mini-Date"><span>4</span></div>
+                            <p id="isi35"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td id="d36">
+                        	<div id="mini-Date"><span>5</span></div>
+                            <p id="isi36"></p>
+                        </td>
+                        <td id="d37">
+                        	<div id="mini-Date"><span>6</span></div>
+                            <p id="isi37"></p>
+                        </td>
+                        <td id="d38">
+                        	<div id="mini-Date"><span>7</span></div>
+                            <p id="isi38"></p>
+                        </td>
+                        <td id="d39">
+                        	<div id="mini-Date"><span>8</span></div>
+                            <p id="isi39"></p>
+                        </td>
+                        <td id="d40">
+                        	<div id="mini-Date"><span>9</span></div>
+                            <p id="isi40"></p>
+                        </td>
+                        <td id="d41">
+                        	<div id="mini-Date"><span>10</span></div>
+                            <p id="isi41"></p>
+                        </td>
+                        <td id="d42">
+                        	<div id="mini-Date"><span>11</span></div>
+                            <p id="isi42"></p>
+                        </td>
+                    </tr>
+                </table> 
+            </div>
+            <div id="divSubmit" align="center">
+            	<form>
+                	<input type="button" value="Simpan Form" id="simpanForm"  onClick="testResults2(this.form)" />
+                    <input type="button" value="Refresh" id="refresh"  />
+                </form>
+            </div>
+        </div>
+        
+        <div id="bottom">
+        	<div>
+                <img src="footer.jpg" width="900" height="34" />
+                Copyright 2012
+            </div>
+        </div>
+    </div>
+</body>
+</html>
