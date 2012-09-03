@@ -29,6 +29,16 @@
 								 }
 							
 						}
+	function ePembayaranDll(a){
+							if(a.value == "dll") {
+													document.getElementById("PembayaranDLL").disabled=false;
+												 }
+							else { 
+									document.getElementById("PembayaranDLL").disabled=true;
+								 	document.getElementById("PembayaranDLL").value = "Lain-lain";
+								 }
+							
+						}
 </script>
 </head>
 
@@ -52,7 +62,7 @@
                 	<tr>
                         <td colspan="3" align="center">
                         	<input type="radio" name="paramMDP" id="mdp" value="mdp" onclick="eTglMDP(this)" />MDP 
-                            <input value="Tanggal MDP" name="dateMDP" id="dateMDP" type="text" disabled="disabled" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input value="Tanggal MDP (Klik Disini)" name="dateMDP" id="dateMDP" type="text" disabled="disabled" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="radio" name="paramMDP" id="ready" value="ready" onclick="eTglMDP(this)" />READY &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </td>
                     </tr>
@@ -65,7 +75,7 @@
                         </td>
                         <td>
                         	<input type="text" value="No SPK" name="nomorSPK" size="5" maxlength="5" onfocus="blank(this)" onblur="unblank(this)" />
-                            <input value="Tanggal Ready" name="dateReady" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
+                            <input value="Tanggal Ready (Klik Disini)" name="dateReady" size="25" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
                         </td>
                     </tr>
                     <tr>
@@ -76,7 +86,7 @@
                         	:
                         </td>
                         <td>
-                        	<input value="Nama" type="text" name="namaPelanggan" size="32" onfocus="blank(this)" onblur="unblank(this)" />
+                        	<input value="Nama" type="text" name="namaPelanggan" size="37" onfocus="blank(this)" onblur="unblank(this)" />
                         </td>
                     </tr>
                     <tr>
@@ -87,8 +97,8 @@
                         	:
                         </td>
                         <td>
-                        	<input value="Telepon" type="text" name="noTelepon" size="12" onfocus="blank(this)" onblur="unblank(this)" />
-                            <input value="HP" type="text" name="noHP" size="13" onfocus="blank(this)" onblur="unblank(this)" />
+                        	<input value="Telepon" type="text" name="noTelepon" size="15" onfocus="blank(this)" onblur="unblank(this)" />
+                            <input value="HP" type="text" name="noHP" size="15" onfocus="blank(this)" onblur="unblank(this)" />
                         </td>
                     </tr>
                     <tr>
@@ -99,7 +109,7 @@
                         	:
                         </td>
                         <td>
-                        	<input value="Nama Kendaraan" type="text" name="namaKendaraan" size="32" onfocus="blank(this)" onblur="unblank(this)" /><br />
+                        	<input value="Nama Kendaraan" type="text" name="namaKendaraan" size="37" onfocus="blank(this)" onblur="unblank(this)" /><br />
                         </td>
                     </tr>
                     <tr>
@@ -129,7 +139,7 @@
                         	:
                         </td>
                         <td>
-                        	<input value="Warna Kendaraan" type="text" name="warnaKendaraan" size="32" onfocus="blank(this)" onblur="unblank(this)" />
+                        	<input value="Warna Kendaraan" type="text" name="warnaKendaraan" size="37" onfocus="blank(this)" onblur="unblank(this)" />
                         </td>
                     </tr>
                     <tr>
@@ -140,10 +150,10 @@
                         	:
                         </td>
                         <td>
-                        	<input type="radio" name="paramPembayaran" value="cash" /><span>CASH</span>
-                            <input type="radio" name="paramPembayaran" value="tafs" /><span>TAFS</span>
-                            <input type="radio" name="paramPembayaran" value="acc" /><span>ACC</span>
-                            <input type="radio" name="paramPembayaran" value="oto" /><span>OTO</span>
+                        	<input type="radio" name="paramPembayaran" value="cash" onclick="ePembayaranDll(this)" /><span>CASH</span>
+                            <input type="radio" name="paramPembayaran" value="tafs" onclick="ePembayaranDll(this)"/><span>TAFS</span>
+                            <input type="radio" name="paramPembayaran" value="acc"  onclick="ePembayaranDll(this)"/><span>ACC</span>
+                            <input type="radio" name="paramPembayaran" value="oto"  onclick="ePembayaranDll(this)"/><span>OTO</span>
                         </td>
                     </tr>
                     <tr>
@@ -154,29 +164,7 @@
                         	
                         </td>
                         <td>
-                            <input value="Lain-lain" type="text" name="paramPembayaran"  onfocus="blank(this)" onblur="unblank(this)" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        	Janji Pelunasan
-                        </td>
-                        <td>
-                        	:
-                        </td>
-                        <td>
-                        	<input value="Tanggal Pelunasan" name="dateLunas" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        	Rencana Penyerahan Kendaraan
-                        </td>
-                        <td>
-                        	:
-                        </td>
-                        <td>
-                        	<input value="Tanggal Penyerahan" name="dateSerah" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
+                            <input type="radio" name="paramPembayaran" value="dll" onclick="ePembayaranDll(this)" /><input disabled="disabled" size="29"  id="PembayaranDLL" value="Lain-lain" type="text" name="PembayaranDLL"  onfocus="blank(this)" onblur="unblank(this)" />
                         </td>
                     </tr>
                     <tr>
@@ -229,7 +217,7 @@
                         </td>
                         <td id="d2">
                         	<div id="mini-Date"><span>2</span></div>
-                            <p id="isi2"></p>    
+                            <p id="isi2" align="center"></p>    
                         </td>
                         <td id="d3">
                         	<div id="mini-Date"><span>3</span></div>

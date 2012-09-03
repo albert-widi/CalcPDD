@@ -103,7 +103,7 @@ li:first-child{
 }
 
 #input-nya form{
-	width:600px;
+	width:700px;
 }
 
 #input-nya tr{
@@ -155,7 +155,7 @@ li:first-child{
 
 #profil td p{
 	position:absolute;
-	margin: 20px 0px 0px 22px;
+	margin: 20px 0px 0px 19px;
 	font-size:large;
 	font-weight:bold;
 }
