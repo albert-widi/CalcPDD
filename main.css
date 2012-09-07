@@ -111,6 +111,12 @@ li:first-child{
 }
 
 /*PROFILE DIV---------------------------------*/
+#paramBulan{
+	float:left;
+	width:100%;
+	padding-left:143px;
+}
+
 #profil{
 	float:left;
 	display:block;
@@ -159,6 +165,15 @@ li:first-child{
 	font-size:large;
 	font-weight:bold;
 }
+/*lebihDate DIV---------------------------------*/
+#lebihDate{
+	display:block;
+	width:100%;
+	padding-top:20px;
+	float:left;	
+}
+
+
 
 /*SUBMIT DIV---------------------------------*/
 #divSubmit {

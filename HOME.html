@@ -32,10 +32,29 @@
 	function ePembayaranDll(a){
 							if(a.value == "dll") {
 													document.getElementById("PembayaranDLL").disabled=false;
+													document.getElementById("paramBedaBank").disabled=true;
+								 					document.getElementById("paramBedaBank").checked = false;
 												 }
+							else if(a.value == "cash"){
+														document.getElementById("paramBedaBank").disabled=false;
+														document.getElementById("PembayaranDLL").disabled=true;
+								 						document.getElementById("PembayaranDLL").value = "Lain-lain";
+											 		  }
 							else { 
 									document.getElementById("PembayaranDLL").disabled=true;
 								 	document.getElementById("PembayaranDLL").value = "Lain-lain";
+									document.getElementById("paramBedaBank").disabled=true;
+								 	document.getElementById("paramBedaBank").checked = false;
+								 }
+							
+						}
+	function eSTNK(a){
+							if(a.value == "stnk") {
+													document.getElementById("paramPilPol").disabled=false;
+												 }
+							else {
+									document.getElementById("paramPilPol").disabled=true;
+								 	document.getElementById("paramPilPol").checked = false;
 								 }
 							
 						}
@@ -151,6 +170,17 @@
                         </td>
                         <td>
                         	<input type="radio" name="paramPembayaran" value="cash" onclick="ePembayaranDll(this)" /><span>CASH</span>
+                            <input disabled="disabled" id="paramBedaBank" type="checkbox" name="paramBedaBank" value="bedaBank" /><span style="font-size:10px;">BEDA BANK</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                        	
+                        </td>
+                        <td>&nbsp;
+                        	
+                        </td>
+                        <td>
                             <input type="radio" name="paramPembayaran" value="tafs" onclick="ePembayaranDll(this)"/><span>TAFS</span>
                             <input type="radio" name="paramPembayaran" value="acc"  onclick="ePembayaranDll(this)"/><span>ACC</span>
                             <input type="radio" name="paramPembayaran" value="oto"  onclick="ePembayaranDll(this)"/><span>OTO</span>
@@ -164,14 +194,15 @@
                         	
                         </td>
                         <td>
-                            <input type="radio" name="paramPembayaran" value="dll" onclick="ePembayaranDll(this)" /><input disabled="disabled" size="29"  id="PembayaranDLL" value="Lain-lain" type="text" name="PembayaranDLL"  onfocus="blank(this)" onblur="unblank(this)" />
+                            <input type="radio" name="paramPembayaran" value="dll" onclick="ePembayaranDll(this)" /><input disabled="disabled"  id="PembayaranDLL" value="Lain-lain" type="text" name="PembayaranDLL"  onfocus="blank(this)" onblur="unblank(this)" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3" align="center">
-                        	<input type="radio" name="paramSTNK" value="nostnk" />TANPA STNK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="paramSTNK" value="stnk" />DENGAN STNK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="checkbox" name="paramPilPol" value="PilPol" /><span style="font-size:10px;">PILIH NOMOR POLISI</span>
+                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        	<input type="radio" name="paramSTNK" value="nostnk" onclick="eSTNK(this)"/>TANPA STNK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="paramSTNK" value="stnk" onclick="eSTNK(this)" />DENGAN STNK
+                            <input disabled="disabled" type="checkbox" id="paramPilPol" name="paramPilPol" value="PilPol" /><span style="font-size:10px;">PILIH NOMOR POLISI</span>
                         </td>
                     </tr>
                     <tr>
@@ -183,7 +214,9 @@
             </form>
             </div>
             <br />
+            <span id="paramBulan">Bulan : </span>
         	<div id="profil" align="center">
+            	
             	
             	<table id="tablePDD" border="1px" width="600px" height="480px">
                 	<tr>
@@ -391,6 +424,9 @@
                         </td>
                     </tr>
                 </table> 
+            </div>
+            <div id="lebihDate" align="center">
+           
             </div>
             <div id="divSubmit" align="center">
             	<form>
