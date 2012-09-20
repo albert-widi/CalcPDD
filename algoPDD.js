@@ -17,7 +17,33 @@ var TglHmin1;
 var jmlhHari;
 var TglPenyerahan;
 var monthNames = ["Januari", "Februari", "Maret", "April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+var arrayDate = [];
 
+function loadData(){
+			
+			if (window.XMLHttpRequest)
+			{
+				xhttp=new XMLHttpRequest();
+			}
+			else
+		    {
+				xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+			
+			xhttp.open("GET","holiday.xml",false);
+			
+			xhttp.send(null);
+			xmlDoc =  xhttp.responseXML;
+			
+			//get data from xml tag
+			date = xmlDoc.getElementsByTagName('date');
+			dateLength = date.length;
+
+			for(i=0;i<dateLength;i++) {
+				arrayDate[i] = date[i].childNodes[0].nodeValue;
+			}
+			
+}
 
 function refreshTable(){
 	document.getElementById("paramBulan").innerHTML= "Bulan : ";
@@ -42,6 +68,18 @@ function parseDate(tempDate){
 
 }
 
+function parseDateSlash(tempDate){
+	
+	var newDate;
+	newDate = tempDate.getDate();
+	newDate += "/"+(tempDate.getMonth()+1);
+	newDate += "/"+tempDate.getFullYear();
+	
+	return newDate;
+
+}
+
+
 function testResults (form) {
 	
 	refreshTable();
@@ -49,7 +87,6 @@ function testResults (form) {
 	//untuk tanggal
 	var tempDateMDP = form.dateMDP.value;
 	var tempDateRede = form.dateReady.value;
-	
 	//input tanpa temp
 	NoSPK = form.nomorSPK.value;
 	NamaPelanggan = form.namaPelanggan.value;
@@ -98,6 +135,10 @@ function testResults (form) {
 			for(i=0;i<3;i++){
 			TglPelunasan.setDate(TglPelunasan.getDate()+1);
 			if(TglPelunasan.getDay()==6 || TglPelunasan.getDay()==0 )i--;
+			else {
+				if(arrayDate.indexOf(parseDateSlash(TglPelunasan)) != -1)
+					i--;
+			}
 		}
 	
 	}
@@ -105,12 +146,20 @@ function testResults (form) {
 			for(i=0;i<2;i++){
 			TglPelunasan.setDate(TglPelunasan.getDate()+1);
 			if(TglPelunasan.getDay()==6 || TglPelunasan.getDay()==0 )i--;
+			else {
+				if(arrayDate.indexOf(parseDateSlash(TglPelunasan)) != -1)
+					i--;
+			}
 		}
 	}
 	else {
 		for(i=0;i<4;i++){
 			TglPelunasan.setDate(TglPelunasan.getDate()+1);
 			if(TglPelunasan.getDay()==6 || TglPelunasan.getDay()==0 )i--;
+			else {
+				if(arrayDate.indexOf(parseDateSlash(TglPelunasan)) != -1)
+					i--;
+			}
 		}
 	}
 	
@@ -119,6 +168,9 @@ function testResults (form) {
 	for(i=0;i<1;i++){
 			TglAFI.setDate(TglAFI.getDate()+1);
 			if(TglAFI.getDay()==6 || TglAFI.getDay()==0 )i--;
+			else {
+				if(arrayDate.indexOf(parseDateSlash(TglAFI)) != -1)i--;
+			}
 	}
 	
 	//cek STNK
@@ -132,6 +184,9 @@ function testResults (form) {
 		for(i=0;i<1;i++){
 			TglDR.setDate(TglDR.getDate()+1);
 			if(TglDR.getDay()==0)i--;
+			else {
+				if(arrayDate.indexOf(parseDateSlash(TglDR)) != -1)i--;
+			}
 		}
 		
 		//tanggal IN
@@ -141,12 +196,18 @@ function testResults (form) {
 				for(i=0;i<6;i++){
 					TglIN.setDate(TglIN.getDate()+1);
 					if(TglIN.getDay()==0)i--;
+					else {
+						if(arrayDate.indexOf(parseDateSlash(TglIN)) != -1)i--;
+					}
 				}
 		}
 		else{
 				for(i=0;i<4;i++){
 					TglIN.setDate(TglIN.getDate()+1);
 					if(TglIN.getDay()==0)i--;
+					else {
+						if(arrayDate.indexOf(parseDateSlash(TglIN)) != -1)i--;
+					}
 				}
 		}	
 	}
@@ -159,12 +220,18 @@ function testResults (form) {
 				for(i=0;i<17;i++){
 					TglHmin1.setDate(TglHmin1.getDate()+1);
 					if(TglHmin1.getDay()==0 || TglHmin1.getDay()== 6)i--;
+					else {
+						if(arrayDate.indexOf(parseDateSlash(TglHmin1)) != -1)i--;
+					}
 				}
 		}
 		else{								//jike CBU
 				for(i=0;i<30;i++){
 					TglHmin1.setDate(TglHmin1.getDate()+1);
 					if(TglHmin1.getDay()==0 || TglHmin1.getDay()==6)i--;
+					else {
+						if(arrayDate.indexOf(parseDateSlash(TglHmin1)) != -1)i--;
+					}
 				}
 		}
 		
@@ -173,6 +240,9 @@ function testResults (form) {
 		for(i=0;i<1;i++){
 			TglIN.setDate(TglIN.getDate()-1);
 			if(TglIN.getDay()==0)i--;
+			else {
+						if(arrayDate.indexOf(parseDateSlash(TglIN)) != -1)i--;
+			}
 		}
 		
 		//tanggal DR
@@ -181,12 +251,18 @@ function testResults (form) {
 				for(i=0;i<6;i++){
 					TglDR.setDate(TglDR.getDate()-1);
 					if(TglDR.getDay()==0)i--;
+					else {
+						if(arrayDate.indexOf(parseDateSlash(TglDR)) != -1)i--;
+					}
 				}
 		}
 		else{
 				for(i=0;i<4;i++){
 					TglDR.setDate(TglDR.getDate()-1);
 					if(TglDR.getDay()==0)i--;
+					else {
+						if(arrayDate.indexOf(parseDateSlash(TglDR)) != -1)i--;
+					}
 				}
 		}
 		
@@ -200,12 +276,18 @@ function testResults (form) {
 				for(i=0;i<10;i++){
 					TglHmin1.setDate(TglHmin1.getDate()+1);
 					if(TglHmin1.getDay()==0 || TglHmin1.getDay()== 6)i--;
+					else {
+						if(arrayDate.indexOf(parseDateSlash(TglHmin1)) != -1)i--;
+					}
 				}
 		}
 		else{								//jike CBU
 				for(i=0;i<25;i++){
 					TglHmin1.setDate(TglHmin1.getDate()+1);
 					if(TglHmin1.getDay()==0 || TglHmin1.getDay()==6)i--;
+					else {
+						if(arrayDate.indexOf(parseDateSlash(TglHmin1)) != -1)i--;
+					}
 				}
 		}
 		
@@ -214,6 +296,9 @@ function testResults (form) {
 		for(i=0;i<1;i++){
 			TglIN.setDate(TglIN.getDate()-1);
 			if(TglIN.getDay()==0)i--;
+			else {
+				if(arrayDate.indexOf(parseDateSlash(TglIN)) != -1)i--;
+			}
 		}
 		
 		//tanggal DR
@@ -222,12 +307,18 @@ function testResults (form) {
 				for(i=0;i<6;i++){
 					TglDR.setDate(TglDR.getDate()-1);
 					if(TglDR.getDay()==0)i--;
+					else {
+						if(arrayDate.indexOf(parseDateSlash(TglDR)) != -1)i--;
+					}
 				}
 		}
 		else{
 				for(i=0;i<4;i++){
 					TglDR.setDate(TglDR.getDate()-1);
 					if(TglDR.getDay()==0)i--;
+					else {
+						if(arrayDate.indexOf(parseDateSlash(TglDR)) != -1)i--;
+					}
 				}
 		}
 	
@@ -239,6 +330,9 @@ function testResults (form) {
 	for(i=0;i<2;i++){
 		TglPenyerahan.setDate(TglPenyerahan.getDate()+1);
 		if(TglPenyerahan.getDay()==0 )i--;
+		else {
+			if(arrayDate.indexOf(parseDateSlash(TglPenyerahan)) != -1)i--;
+		}
 	}
 	
 	
@@ -348,23 +442,29 @@ function testResults (form) {
 							
 							///////////////////////////////////////////////////////////////////////////////////////////////
 							
+							//Tgl Libur
+							if(arrayDate.indexOf(parseDateSlash(tglTable)) != -1){
+								document.getElementById("d"+i).style.backgroundColor = "red";
+								document.getElementById("d"+i).style.color = "white";
+								document.getElementById("isi"+i).innerHTML="Libur";
+							}
 							
 							
 							tglTable.setDate(tglTable.getDate()+1);
 							}
 		//jika lebih DR
 		if(TglDR >= tglTable){
-			document.getElementById("lebihDate").innerHTML +="<span>"+parseDate(TglDR)+" = DR</span><br />";
+			document.getElementById("lebihDate").innerHTML +="<span>DR = "+parseDate(TglDR)+"</span><br />";
 		}	
 		
 		//jika lebih IN
 		if(TglIN >= tglTable){
-			document.getElementById("lebihDate").innerHTML +="<span>"+parseDate(TglIN)+" = IN</span><br />";
+			document.getElementById("lebihDate").innerHTML +="<span>IN = "+parseDate(TglIN)+"</span><br />";
 		}
 		
 		//jika lebih BSTB
 		if(TglPenyerahan >= tglTable){
-			document.getElementById("lebihDate").innerHTML +="<span>"+parseDate(TglPenyerahan)+" = BSTB</span><br />";
+			document.getElementById("lebihDate").innerHTML +="<span>BSTB = "+parseDate(TglPenyerahan)+"</span><br />";
 		}
 	}
 	

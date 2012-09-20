@@ -20,7 +20,7 @@
 		
 		function loadData()
 		{
-			
+			alert("test");
 			if (window.XMLHttpRequest)
 			{
 				xhttp=new XMLHttpRequest();
@@ -31,7 +31,7 @@
 		    }
 			
 			xhttp.open("GET","holiday.xml",false);
-			
+			alert("test");
 			xhttp.send(null);
 			xmlDoc =  xhttp.responseXML;
 			
