@@ -20,6 +20,7 @@ var monthNames = ["Januari", "Februari", "Maret", "April","Mei","Juni","Juli","A
 
 
 function refreshTable(){
+	document.getElementById("paramBulan").innerHTML= "Bulan : ";
 	document.getElementById("lebihDate").innerHTML="";
 	for(i = 1 ; i<=42 ; i++){
 		document.getElementById("d"+i).style.backgroundColor = "white";
@@ -342,12 +343,6 @@ function testResults (form) {
 								document.getElementById("d"+i).style.backgroundColor = "green";
 								document.getElementById("d"+i).style.color = "white";
 								document.getElementById("isi"+i).innerHTML="BSTB";
-							}
-							
-							if(tglTable.getDate() == TglHmin1.getDate() && tglTable.getMonth() == TglHmin1.getMonth() ){
-								document.getElementById("d"+i).style.backgroundColor = "purple";
-								document.getElementById("d"+i).style.color = "white";
-								document.getElementById("isi"+i).innerHTML="H-1";
 							}
 							
 							
