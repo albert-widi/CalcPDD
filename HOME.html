@@ -8,6 +8,11 @@
 <script type='Text/JavaScript' src='algoPDD.js'></script>
 <script type="text/javascript">
 	
+	function resetField()
+	{
+		//document.getElementById("namaPelanggan").innerHTML = "";
+		//document.getElementById("paramPembayaran").innerHTML = document.getElementById("paramPembayaran").defaultValue;
+	}
 	
 
 	function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
@@ -108,7 +113,7 @@
                         	:
                         </td>
                         <td>
-                        	<input value="Nama" type="text" name="namaPelanggan" size="37" onfocus="blank(this)" onblur="unblank(this)" />
+                        	<input value="Nama" type="text" id="namaPelanggan" name="namaPelanggan" size="37" onfocus="blank(this)" onblur="unblank(this)" />
                         </td>
                     </tr>
                     <tr>
@@ -119,7 +124,7 @@
                         	:
                         </td>
                         <td>
-                        	<input value="Telepon" type="text" name="noTelepon" size="15" onfocus="blank(this)" onblur="unblank(this)" />
+                        	<input value="Telepon" type="text" id="noTelepon" name="noTelepon" size="15" onfocus="blank(this)" onblur="unblank(this)" />
                             <input value="HP" type="text" name="noHP" size="15" onfocus="blank(this)" onblur="unblank(this)" />
                         </td>
                     </tr>
@@ -131,7 +136,7 @@
                         	:
                         </td>
                         <td>
-                        	<input value="Nama Kendaraan" type="text" name="namaKendaraan" size="37" onfocus="blank(this)" onblur="unblank(this)" /><br />
+                        	<input value="Nama Kendaraan" type="text" id="namaKendaraan" name="namaKendaraan" size="37" onfocus="blank(this)" onblur="unblank(this)" /><br />
                         </td>
                     </tr>
                     <tr>
@@ -172,7 +177,7 @@
                         	:
                         </td>
                         <td>
-                        	<input type="radio" name="paramPembayaran" value="cash" onclick="ePembayaranDll(this)" /><span>CASH</span>
+                        	<input type="radio" id="paramPembayaran" name="paramPembayaran" value="cash" onclick="ePembayaranDll(this)" /><span>CASH</span>
                             <input disabled="disabled" id="paramBedaBank" type="checkbox" name="paramBedaBank" value="bedaBank" /><span style="font-size:10px;">BEDA BANK</span>
                         </td>
                     </tr>
@@ -209,9 +214,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" align="center">
+                        <td colspan="2" align="center">
                         	<input type="button" size="30" value="Submit" style="width:180px; height:50px;" onClick="testResults(this.form)"  />
                         </td>
+						<td colspan="2" align="center">
+							<button type="submit" size="30" style="width:180px; height:50px;" onClick="resetField()">Reset</button>
+						</td>
                     </tr>
                 </table>	 
             </form>
