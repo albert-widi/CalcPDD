@@ -340,7 +340,7 @@ function testResults (form) {
 	document.getElementById("paramBulan").innerHTML += monthNames[tglRede.getMonth()];
 	
 	//Pewarnaan Table
-	for(i = 1 ; i <=42 ; i++){
+	for(i = 1 ; i <=62 ; i++){
 							
 							//initialize
 							if(i<=7){
@@ -353,7 +353,7 @@ function testResults (form) {
 								if(tglTable.getDay() == 6 )document.getElementById("h"+i).innerHTML="Sabtu";
 							}
 							
-							if(i==31 && tglTable.getDate() == 1){
+							if((i == 31 && tglTable.getDate() == 1) || (i == 62 && tglTable.getDate() == 1)) {
 								document.getElementById("d"+i).style.backgroundColor = "black";
 								document.getElementById("d"+i).style.color = "black";	
 								i++;
@@ -361,7 +361,27 @@ function testResults (form) {
 													 document.getElementById("d"+i).style.color = "white";
 													}
 							}
-							else if(i==30 && tglTable.getDate() == 1){
+							else if((i == 30 && tglTable.getDate() == 1) || (i == 61 && tglTable.getDate() == 1)){
+								for(b = i ; b <=31 ; b++) {
+									document.getElementById("d"+i).style.backgroundColor = "black";
+									document.getElementById("d"+i).style.color = "black";
+									i++;
+								}
+								if(tglTable.getDay() == 0 ) {
+									document.getElementById("d"+i).style.backgroundColor = "blue";
+									document.getElementById("d"+i).style.color = "white";	
+								}
+							}
+							/*else if(i==62 && tglTable.getDate() == 1) {
+								document.getElementById("d"+i).style.backgroundColor = "black";
+								document.getElementById("d"+i).style.color = "black";	
+								i++;
+								if(tglTable.getDay() == 0 ) {
+									document.getElementById("d"+i).style.backgroundColor = "blue";
+									document.getElementById("d"+i).style.color = "white";
+								}
+							}
+							else if(i==61 && tglTable.getDate() == 1) {
 								for(b = i ; b <=31 ; b++){
 									document.getElementById("d"+i).style.backgroundColor = "black";
 									document.getElementById("d"+i).style.color = "black";
@@ -370,8 +390,8 @@ function testResults (form) {
 								if(tglTable.getDay() == 0 ){document.getElementById("d"+i).style.backgroundColor = "blue";
 													 document.getElementById("d"+i).style.color = "white";	
 													}
-							}
-							else if(i==29 && tglTable.getDate() == 1){
+							}*/
+							else if((i==29 && tglTable.getDate() == 1) || (i == 60 && tglTable.getDate() == 1)) {
 								for(b = i ; b <=31 ; b++){
 									document.getElementById("d"+i).style.backgroundColor = "black";
 									document.getElementById("d"+i).style.color = "black";
