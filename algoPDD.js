@@ -48,7 +48,7 @@ function loadData(){
 function refreshTable(){
 	document.getElementById("paramBulan").innerHTML= "Bulan : ";
 	document.getElementById("lebihDate").innerHTML="";
-	for(i = 1 ; i<=42 ; i++){
+	for(i = 1 ; i<=62 ; i++){
 		document.getElementById("d"+i).style.backgroundColor = "white";
 		document.getElementById("d"+i).style.color = "black";
 		document.getElementById("isi"+i).innerHTML = "";
@@ -357,12 +357,13 @@ function testResults (form) {
 								document.getElementById("d"+i).style.backgroundColor = "black";
 								document.getElementById("d"+i).style.color = "black";	
 								i++;
-								if(tglTable.getDay() == 0 ){document.getElementById("d"+i).style.backgroundColor = "blue";
-													 document.getElementById("d"+i).style.color = "white";
-													}
+								if(tglTable.getDay() == 0 ) {
+									document.getElementById("d"+i).style.backgroundColor = "blue";
+									document.getElementById("d"+i).style.color = "white";
+								}
 							}
 							else if((i == 30 && tglTable.getDate() == 1) || (i == 61 && tglTable.getDate() == 1)){
-								for(b = i ; b <=31 ; b++) {
+								for(b = i ; b <=i+1 ; b++) {
 									document.getElementById("d"+i).style.backgroundColor = "black";
 									document.getElementById("d"+i).style.color = "black";
 									i++;
@@ -392,24 +393,26 @@ function testResults (form) {
 													}
 							}*/
 							else if((i==29 && tglTable.getDate() == 1) || (i == 60 && tglTable.getDate() == 1)) {
-								for(b = i ; b <=31 ; b++){
+								for(b = i ; b <=i+2 ; b++){
 									document.getElementById("d"+i).style.backgroundColor = "black";
 									document.getElementById("d"+i).style.color = "black";
 									i++;
 								}
-								if(tglTable.getDay() == 0 ){document.getElementById("d"+i).style.backgroundColor = "blue";
-													 document.getElementById("d"+i).style.color = "white";	
-													}
+								if(tglTable.getDay() == 0 ) {
+									document.getElementById("d"+i).style.backgroundColor = "blue";
+									document.getElementById("d"+i).style.color = "white";	
+								}
 							}
 							else {
-								if(tglTable.getDay() == 0 ){document.getElementById("d"+i).style.backgroundColor = "blue";
-													 document.getElementById("d"+i).style.color = "white";	
-													}	
+								if(tglTable.getDay() == 0 ) {
+									document.getElementById("d"+i).style.backgroundColor = "blue";
+									document.getElementById("d"+i).style.color = "white";	
+								}	
 							}
 							///////////////////////////////////////////////////////////////////////////////////////////////
 							//MDP atau Ready
 							
-							if(flagMDPRede == "mdp"){
+							if(flagMDPRede == "mdp") {
 									//tglMDP
 									if(i == tglMDP.getDate()){
 										document.getElementById("d"+i).style.backgroundColor = "red";
