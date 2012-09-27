@@ -6,316 +6,60 @@
 	<link href="main.css" type="text/css" rel="stylesheet" />
 	<script type='Text/JavaScript' src='scw.js'></script>
 	<script type='Text/JavaScript' src='algoPDD.js'></script>
+	<script type='text/javascript'>
+		function createTable()
+		{
+			//alert('something');
+			var day = 31;
+			var table = "<table border='1px' width='600px' height='480px'>" + 
+						"<tr>" +
+							"<th>" +
+								"<span id='h1'>Senin</span>" +
+							"</th>" + 
+							"<th>" +
+								"<span id='h2'>Selasa</span>" +
+							"</th>" + 
+							"<th>" +
+								"<span id='h3'>Rabu</span>" +
+							"</th>" + 
+							"<th>" +
+								"<span id='h4'>Kamis</span>" +
+							"</th>" + 
+							"<th>" +
+								"<span id='h5'>Jumat</span>" +
+							"</th>" + 
+							"<th>" +
+								"<span id='h6'>Sabtu</span>" +
+							"</th>" + 
+							"<th>" +
+								"<span id='h7'>Minggu</span>" +
+							"</th>" +
+						"</tr>" + "<tr>";
+			for(i = 1; i <= day; i++) {
+				table += "<td id='d" + i +"' ><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+				if(i%7 == 0 && i == day) {
+					table += "</tr></table>";
+				}
+				else if(i%7 == 0) {
+					table += "</tr>" + "<tr>";
+				}
+			}
+			
+			document.getElementById("profil1").innerHTML = table;
+		}
+	</script>
 </head>
 
-<body>
+<body onload="createTable();">
 	<div id="container">   
         <div id="content-wrap">
-            <span id="paramBulan">Bulan : </span>
-        	<div id="profil" align="center">
-            	
-            	
-            	<table id="tablePDD" border="1px" width="600px" height="480px">
-                	<tr>
-                    	<th>
-                        	<span id="h1"> </span>
-                        </th>
-                        <th>                    	
-                            <span id="h2"> </span>
-                        </th>
-                        <th>
-                        	<span id="h3"> </span> 
-                        </th>
-                        <th>
-                        	<span id="h4"> </span> 
-                        </th>
-                        <th>
-                        	<span id="h5"> </span> 
-                        </th>
-                        <th>
-                            <span id="h6"> </span>
-                        </th>
-                        <th>
-                            <span id="h7"> </span>
-                        </th>
-                    </tr>
-                	<tr>
-                    	<td id="d1">
-                        	<div id="mini-Date"><span>1</span></div>
-                            <p id="isi1"></p>
-   
-                        </td>
-                        <td id="d2">
-                        	<div id="mini-Date"><span>2</span></div>
-                            <p id="isi2" align="center"></p>    
-                        </td>
-                        <td id="d3">
-                        	<div id="mini-Date"><span>3</span></div>
-                            <p id="isi3"></p>
-                        </td>
-                        <td id="d4">
-                        	<div id="mini-Date"><span>4</span></div>
-                            <p id="isi4"></p>
-                        </td>
-                        <td id="d5">
-                        	<div id="mini-Date"><span>5</span></div>
-                            <p id="isi5"></p>
-                        </td>
-                        <td id="d6">
-                        	<div id="mini-Date"><span>6</span></div>
-                            <p id="isi6"></p>
-                        </td>
-                        <td id="d7">
-                        	<div id="mini-Date"><span>7</span></div>
-                            <p id="isi7"></p>
-                        </td>
-                    </tr>
-                   <tr>
-                    	<td id="d8">
-                        	<div id="mini-Date"><span>8</span></div>
-                            <p id="isi8"></p>
-                        </td>
-                        <td id="d9">
-                        	<div id="mini-Date"><span>9</span></div>
-                            <p id="isi9"></p>
-                        </td>
-                        <td id="d10">
-                        	<div id="mini-Date"><span>10</span></div>
-                            <p id="isi10"></p>
-                        </td>
-                        <td id="d11">
-                        	<div id="mini-Date"><span>11</span></div>
-                            <p id="isi11"></p>
-                        </td>
-                        <td id="d12">
-                        	<div id="mini-Date"><span>12</span></div>
-                            <p id="isi12"></p>
-                        </td>
-                        <td id="d13">
-                        	<div id="mini-Date"><span>13</span></div>
-                            <p id="isi13"></p>
-                        </td>
-                        <td id="d14">
-                        	<div id="mini-Date"><span>14</span></div>
-                            <p id="isi14"></p>
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td id="d15">
-                        	<div id="mini-Date"><span>15</span></div>
-                            <p id="isi15"></p>
-                        </td>
-                        <td id="d16">
-                        	<div id="mini-Date"><span>16</span></div>
-                            <p id="isi16"></p>
-                        </td>
-                        <td id="d17">
-                        	<div id="mini-Date"><span>17</span></div>
-                            <p id="isi17"></p>
-                        </td>
-                        <td id="d18">
-                        	<div id="mini-Date"><span>18</span></div>
-                            <p id="isi18"></p>
-                        </td>
-                        <td id="d19">
-                        	<div id="mini-Date"><span>19</span></div>
-                            <p id="isi19"></p>
-                        </td>
-                        <td id="d20">
-                        	<div id="mini-Date"><span>20</span></div>
-                            <p id="isi20"></p>
-                        </td>
-                        <td id="d21">
-                        	<div id="mini-Date"><span>21</span></div>
-                            <p id="isi21"></p>
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td id="d22">
-                        	<div id="mini-Date"><span>22</span></div>
-                            <p id="isi22"></p>
-                        </td>
-                        <td id="d23">
-                        	<div id="mini-Date"><span>23</span></div>
-                            <p id="isi23"></p>
-                        </td>
-                        <td id="d24">
-                        	<div id="mini-Date"><span>24</span></div>
-                            <p id="isi24"></p>
-                        </td>
-                        <td id="d25">
-                        	<div id="mini-Date"><span>25</span></div>
-                            <p id="isi25"></p>
-                        </td>
-                        <td id="d26">
-                        	<div id="mini-Date"><span>26</span></div>
-                            <p id="isi26"></p>
-                        </td>
-                        <td id="d27">
-                        	<div id="mini-Date"><span>27</span></div>
-                            <p id="isi27"></p>
-                        </td>
-                        <td id="d28">
-                        	<div id="mini-Date"><span>28</span></div>
-                            <p id="isi28"></p>
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td id="d29">
-                        	<div id="mini-Date"><span>29</span></div>
-                            <p id="isi29"></p>
-                        </td>
-                        <td id="d30">
-                        	<div id="mini-Date"><span>30</span></div>
-                            <p id="isi30"></p>
-                        </td>
-                        <td id="d31">
-                        	<div id="mini-Date"><span>31</span></div>
-                            <p id="isi31"></p>
-                        </td>
-                        <td id="d32">
-                        	<div id="mini-Date"><span>1</span></div>
-                            <p id="isi32"></p>
-                        </td>
-                        <td id="d33">
-                        	<div id="mini-Date"><span>2</span></div>
-                            <p id="isi33"></p>
-                        </td>
-                        <td id="d34">
-                        	<div id="mini-Date"><span>3</span></div>
-                            <p id="isi34"></p>
-                        </td>
-                        <td id="d35">
-                        	<div id="mini-Date"><span>4</span></div>
-                            <p id="isi35"></p>
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td id="d36">
-                        	<div id="mini-Date"><span>5</span></div>
-                            <p id="isi36"></p>
-                        </td>
-                        <td id="d37">
-                        	<div id="mini-Date"><span>6</span></div>
-                            <p id="isi37"></p>
-                        </td>
-                        <td id="d38">
-                        	<div id="mini-Date"><span>7</span></div>
-                            <p id="isi38"></p>
-                        </td>
-                        <td id="d39">
-                        	<div id="mini-Date"><span>8</span></div>
-                            <p id="isi39"></p>
-                        </td>
-                        <td id="d40">
-                        	<div id="mini-Date"><span>9</span></div>
-                            <p id="isi40"></p>
-                        </td>
-                        <td id="d41">
-                        	<div id="mini-Date"><span>10</span></div>
-                            <p id="isi41"></p>
-                        </td>
-                        <td id="d42">
-                        	<div id="mini-Date"><span>11</span></div>
-                            <p id="isi42"></p>
-                        </td>
-                  	</tr>
-                  	<tr>
-                        <td id="d43">
-                        	<div id="mini-Date"><span>12</span></div>
-                            <p id="isi43"></p>
-                        </td>
-                        <td id="d44">
-                        	<div id="mini-Date"><span>13</span></div>
-                            <p id="isi44"></p>
-                        </td>
-                        <td id="d45">
-                        	<div id="mini-Date"><span>14</span></div>
-                            <p id="isi45"></p>
-                        </td>
-                        <td id="d46">
-                        	<div id="mini-Date"><span>15</span></div>
-                            <p id="isi46"></p>
-                        </td>
-                        <td id="d47">
-                        	<div id="mini-Date"><span>16</span></div>
-                            <p id="isi47"></p>
-                        </td>
-                        <td id="d48">
-                        	<div id="mini-Date"><span>17</span></div>
-                            <p id="isi48"></p>
-                        </td>
-                        <td id="d49">
-                        	<div id="mini-Date"><span>18</span></div>
-                            <p id="isi49"></p>
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td id="d50">
-                        	<div id="mini-Date"><span>19</span></div>
-                            <p id="isi50"></p>
-                        </td>
-                        <td id="d51">
-                        	<div id="mini-Date"><span>20</span></div>
-                            <p id="isi51"></p>
-                        </td>
-                        <td id="d52">
-                        	<div id="mini-Date"><span>21</span></div>
-                            <p id="isi52"></p>
-                        </td>
-                        <td id="d53">
-                        	<div id="mini-Date"><span>22</span></div>
-                            <p id="isi53"></p>
-                        </td>
-                        <td id="d54">
-                        	<div id="mini-Date"><span>23</span></div>
-                            <p id="isi54"></p>
-                        </td>
-                        <td id="d55">
-                        	<div id="mini-Date"><span>24</span></div>
-                            <p id="isi55"></p>
-                        </td>
-                        <td id="d56">
-                        	<div id="mini-Date"><span>25</span></div>
-                            <p id="isi56"></p>
-                        </td>	
-                    </tr>
-                    <tr>
-                    	<td id="d57">
-                        	<div id="mini-Date"><span>26</span></div>
-                            <p id="isi57"></p>
-                        </td>
-                        <td id="d58">
-                        	<div id="mini-Date"><span>27</span></div>
-                            <p id="isi58"></p>
-                        </td>
-                        <td id="d59">
-                        	<div id="mini-Date"><span>28</span></div>
-                            <p id="isi59"></p>
-                        </td>
-                        <td id="d60">
-                        	<div id="mini-Date"><span>29</span></div>
-                            <p id="isi60"></p>
-                        </td>
-                        <td id="d61">
-                        	<div id="mini-Date"><span>30</span></div>
-                            <p id="isi61"></p>
-                        </td>
-                        <td id="d62">
-                        	<div id="mini-Date"><span>31</span></div>
-                            <p id="isi62"></p>
-                        </td>
-                    </tr>
-                </table> 
+            <span id="paramBulan1">Bulan : </span>
+        	<div id="profil1" align="center">
+            </div>
+            <span id="paramBulan2">Bulan : </span>
+            <div id="profil2" align="center">
             </div>
             <div id="lebihDate" align="center">
-           
-            </div>
-            <div id="divSubmit" align="center">
-            	<form>
-                	<input type="button" value="Simpan Form" id="simpanForm"  onClick="openResult(this.form)" />
-                    <button type="submit" onClick="resetField()" style="height:50px; width:100px;">Refresh</button>
-                </form>
             </div>
         </div>
         
