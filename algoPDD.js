@@ -41,8 +41,7 @@ function loadData(){
 
 			for(i=0;i<dateLength;i++) {
 				arrayDate[i] = date[i].childNodes[0].nodeValue;
-			}
-			
+			}		
 }
 
 function refreshTable(){
