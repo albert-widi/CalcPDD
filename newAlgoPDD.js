@@ -1,5 +1,5 @@
 //Javascript Document
-function loadData() {	
+function loadHolidayData() {	
 	if (window.XMLHttpRequest) {
 		xhttp=new XMLHttpRequest();
 	}
