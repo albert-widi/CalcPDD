@@ -7,66 +7,80 @@
 <script type='Text/JavaScript' src='scw.js'></script>
 <script type='Text/JavaScript' src='algoPDD.js'></script>
 <script type="text/javascript">
-	var error = [10];
+	var error = [20];
 	//main function
-	function openResult()
+	function openResult(form)
 	{
-		checkForm();
+		checkForm(form);
+		var open = window.open("RESULT.html");
+		open.form = form;
 	}
 	
 	function checkForm(form)
 	{
+		//init var checking
 		var errorCount = 0;
+		var tempDateMDP = form.dateMDP.value;
+		var tempDateRede = form.dateReady.value;
+		var NoSPK = form.nomorSPK.value;
+		var NamaPelanggan = form.namaPelanggan.value;
+		var telpon = form.noTelepon.value;
+		var hp = form.noHP.value;
+		var NamaKendaraan = form.namaKendaraan.value;
+		var WarnaKendaraan = form.warnaKendaraan.value;
+		var PembayaranDll = form.PembayaranDLL.value;
 		
 		if(form.paramMDP[0].checked && tempDateMDP == form.dateMDP.defaultValue) {
 			error[errorCount] = "Pilih Tanggal MDP";
 			errorCount++;
 		}
-		else if(!form.paramMDP[0].checked && !form.paramMDP[1].checked) {
+		if(!form.paramMDP[0].checked && !form.paramMDP[1].checked) {
 			error[errorCount] = "Pilih MDP atau Ready";
 			errorCount++;
 		}
-		else if(NoSPK == form.nomorSPK.defaultValue || tempDateRede == form.dateReady.defaultValue ) {
+		if(NoSPK == form.nomorSPK.defaultValue || tempDateRede == form.dateReady.defaultValue ) {
 			error[errorCount] = "Nomor SPK atau Tanggal Ready masih kosong";
 			errorCount++;
 		}
-		else if(NamaPelanggan == form.namaPelanggan.defaultValue) {
+		if(NamaPelanggan == form.namaPelanggan.defaultValue) {
 			error[errorCount] = "Nama Pelanggan masih kosong";
 			errorCount++;
 		}
-		else if(telpon == form.noTelepon.defaultValue && hp == form.noHP.defaultValue) {
+		if(telpon == form.noTelepon.defaultValue && hp == form.noHP.defaultValue) {
 			error[errorCount] = "Nomor Telepon atau HP masih kosong";
 			errorCount++;
 		}
-		else if(NamaKendaraan == form.namaKendaraan.defaultValue) {
+		if(NamaKendaraan == form.namaKendaraan.defaultValue) {
 			error[errorCount] = "Nama Kendaraan masih kosong";
 			errorCount++;
 		}
-		else if(!form.paramTipe[0].checked && !form.paramTipe[1].checked) {
+		if(!form.paramTipe[0].checked && !form.paramTipe[1].checked) {
 			error[errorCount] = "Pilih CKD atau CBU";
 			errorCount++;
 		}
-		else if(WarnaKendaraan == form.warnaKendaraan.defaultValue) { 
+		if(WarnaKendaraan == form.warnaKendaraan.defaultValue) { 
 			error[errorCount] = "Warna Kendaraan masih kosong";
 			errorCount++;
 		}
-		else if(!form.paramPembayaran[0].checked && !form.paramPembayaran[1].checked && !form.paramPembayaran[2].checked && !form.paramPembayaran[3].checked && !form.paramPembayaran[4].checked && PembayaranDll == form.PembayaranDLL.defaultValue) {
+		if(!form.paramPembayaran[0].checked && !form.paramPembayaran[1].checked && !form.paramPembayaran[2].checked && !form.paramPembayaran[3].checked && !form.paramPembayaran[4].checked && PembayaranDll == form.PembayaranDLL.defaultValue) {
 			error[errorCount] = "Tentukan Cara Pembayaran";
 			errorCount++;
 		}
-		else if(!form.paramSTNK[0].checked && !form.paramSTNK[1].checked) { 
+		if(!form.paramSTNK[0].checked && !form.paramSTNK[1].checked) { 
 			error[errorCount] = "Pilih STNK atau Tanpa STNK";
 			errorCount++;
 		}
 		
 		if(errorCount != 0) {
-			var errorCode = '<ul>';
-			for(i = 0; i <= errorCount; i++) {
-				errorCode += '<li>' + error[i] + '</li>';
+			var errorCode = "<ul>";
+			for(i = 0; i < errorCount; i++) {
+				errorCode += "<li>" + error[i] + "</li>";
 			}
-		   errorCode += '</ul>';
+		   errorCode += "</ul>";
 		   
 		   document.getElementById("errorContainer").innerHTML = errorCode;
+		   document.getElementById("errorContainer").scrollIntoView();
+		   throw "err30";
 		}
 		else {
 			return;
@@ -168,7 +182,7 @@
                         	:
                         </td>
                         <td>
-                        	<input type="text" value="No SPK" id="nomorSPK" name="nomorSPK" size="5" maxlength="5" onfocus="blank(this)" onblur="unblank(this)" />
+                        	<input type="text" value="No SPK" name="nomorSPK" size="5" maxlength="5" onfocus="blank(this)" onblur="unblank(this)" />
                             <input value="Tanggal Ready (Klik Disini)" name="dateReady" size="25" type="text" onclick="scwShow(this,event);" onfocus="blank(this)" onblur="unblank(this)">
                         </td>
                     </tr>
@@ -282,7 +296,7 @@
                     </tr>
                     <tr>
                         <td colspan="3" align="center">
-                        	<input type="button" size="30" value="Submit" style="width:180px; height:50px;" onClick="openResult()"  />
+                        	<input type="button" size="30" value="Submit" style="width:180px; height:50px;" onClick="openResult(this.form);"  />
                         </td>
                     </tr>
                 </table>	 

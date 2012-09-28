@@ -9,30 +9,44 @@
 	<script type='text/javascript'>
 		function createTable()
 		{
+			var listBulan = [29,31,28,31,30,31,30,31,31,30,31,30,31];
+			var bulanReady;
+			if(form.paramMDP[0].checked) { 
+				tmpSplit = form.dateMDP.value.split('/');
+				tmpDate = new Date(tmpSplit[2], tmpSplit[1], tmpSplit[1]);
+				tmpDate.setDate(tmpDate.getDate()+2);
+				tmpSplit = tmpDate.value.split('/');
+				bulanReady = tmpSplit[1];
+			}
+			else {
+				tmpSplit = form.dateReady.value.split('/');
+				bulanReady = tmpSplit[1];
+			}
+			
 			//alert('something');
 			var day = 31;
 			var table = "<table border='1px' width='600px' height='480px'>" + 
 						"<tr>" +
 							"<th>" +
-								"<span id='h1'>Senin</span>" +
+								"<span id='h1'></span>" +
 							"</th>" + 
 							"<th>" +
-								"<span id='h2'>Selasa</span>" +
+								"<span id='h2'></span>" +
 							"</th>" + 
 							"<th>" +
-								"<span id='h3'>Rabu</span>" +
+								"<span id='h3'></span>" +
 							"</th>" + 
 							"<th>" +
-								"<span id='h4'>Kamis</span>" +
+								"<span id='h4'></span>" +
 							"</th>" + 
 							"<th>" +
-								"<span id='h5'>Jumat</span>" +
+								"<span id='h5'></span>" +
 							"</th>" + 
 							"<th>" +
-								"<span id='h6'>Sabtu</span>" +
+								"<span id='h6'></span>" +
 							"</th>" + 
 							"<th>" +
-								"<span id='h7'>Minggu</span>" +
+								"<span id='h7'></span>" +
 							"</th>" +
 						"</tr>" + "<tr>";
 			for(i = 1; i <= day; i++) {
@@ -47,6 +61,8 @@
 			
 			document.getElementById("profil1").innerHTML = table;
 		}
+		
+		function 
 	</script>
 </head>
 
