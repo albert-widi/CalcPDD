@@ -34,11 +34,16 @@
 		var tglDR;
 		var tglIN;
 		var tglHmin1;
-		tglPenyerahan;
+		var tglPenyerahan;
+		var tglTable;
+		
+		//flag
+		var flagMDPRede;
 		
 		//extend
 		var month1Name;
 		var month2Name;
+		var plus1Month = false;
 		
 		function initPage()
 		{
@@ -108,9 +113,12 @@
 			tglTable = new Date(a[2],a[1]-1,1);
 			
 			//cek value MDP atau Ready
-			var flagMDPRede;
-			if(form.paramMDP[0].checked)flagMDPRede = form.paramMDP[0].value;
-			else flagMDPRede = form.paramMDP[1].value;
+			if(form.paramMDP[0].checked) { 
+				flagMDPRede = form.paramMDP[0].value;
+			}
+			else {
+				flagMDPRede = form.paramMDP[1].value;
+			}
 			//--------------------------------------------------------------------
 			
 			//cek Pelunasan
@@ -353,9 +361,14 @@
 	
 		function createTable()
 		{	
-			document.getElementById("paramBulan1").innerHTML = monthNames[tglRede.getMonth()];
-			if(monthNames[tglRede.getMonth()] != monthNames[tglPenyerahan.getMonth()]) {
-				document.getElementById("paramBulan2").innerHTML = monthNames[tglPenyerahan.getMonth()];
+			var month1 = tglRede.getMonth();
+			var year1 = tglRede.getFullYear();
+			var month2 = tglPenyerahan.getMonth();
+			var year2 = tglPenyerahan.getFullYear();
+			document.getElementById("paramBulan1").innerHTML = monthNames[month1];
+			if(month1 != month2) {
+				document.getElementById("paramBulan2").innerHTML = monthNames[month2];
+				plus1Month = true;
 			}
 			
 			/*var listBulan = [29,31,28,31,30,31,30,31,31,30,31,30,31];
@@ -375,7 +388,13 @@
 			//month1
 			
 			var start = 1;
-			var day = 31;
+			var day;
+			if(month1 == 2 && year1%4 == 0) {
+				day = monthDayList[0];
+			}
+			else {
+				day = monthDayList[month1];
+			}
 			var table = "<table border='1px' width='600px' height='480px'>" + 
 						"<tr>" +
 							"<th>" +
@@ -444,8 +463,61 @@
 		function fillTable(start, day, month)
 		{
 			var table = "";
+			var hStart = 0;
+			var tmpH = 0;
+			
+			if(month == 1) {
+				hStart = 0;
+			}
+			else {
+				hStart = 7;
+			}
+			
 			for(i = start; i <= day; i++) {
 				table += "<td id='d" + i +"' ><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+				tmpH = hStart + i;
+				
+				//day name
+				if(i <= 7) {
+					if(tglTable.getDay() == 0) {
+						document.getElementById("h"+tmpH).innerHTML = "Minggu";
+					}
+					if(tglTable.getDay() == 1 ) {
+						document.getElementById("h"+tmpH).innerHTML="Senin";
+					}
+					if(tglTable.getDay() == 2 ) { 
+						document.getElementById("h"+itmpH.innerHTML="Selasa";
+					}
+					if(tglTable.getDay() == 3 ) { 
+						document.getElementById("h"+tmpH).innerHTML="Rabu";
+					}
+					if(tglTable.getDay() == 4 ) { 
+						document.getElementById("h"+tmpH).innerHTML="Kamis";
+					}
+					if(tglTable.getDay() == 5 ) { 
+						document.getElementById("h"+tmpH).innerHTML="Jumat";
+					}
+					if(tglTable.getDay() == 6 ) { 
+						document.getElementById("h"+tmpH).innerHTML="Sabtu";
+					}
+				}
+				
+				//monday blocking
+				if(tglTable.getDay() == 0) {
+					document.getElementById("d"+i).style.backgroundColor = "blue";
+					document.getElementById("d"+i).style.color = "white";
+				}
+				
+				//MDP or Ready
+				if(flagMDPRede == "mdp") {
+					//tglMDP
+					if(tglTable.getDate() == tglMDP.getDate() && tglTable.getMonth() == tglMDP.getMonth()) {
+						document.getElementById("d"+i).style.backgroundColor = "red";
+						document.getElementById("d"+i).style.color = "white";
+						document.getElementById("isi"+i).innerHTML="MDP";
+					}
+				
+				//closing
 				if(i%7 == 0 && i == day) {
 					table += "</tr></table>";
 				}
