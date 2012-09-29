@@ -18,17 +18,63 @@
 		var NamaKendaraan = form.namaKendaraan.value;
 		var WarnaKendaraan = form.warnaKendaraan.value;
 		var PembayaranDll = form.PembayaranDLL.value;
+		var monthNames = ["Januari", "Februari", "Maret", "April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+		//0 for %4 february
+		var monthDayList = [29,31,28,31,30,31,30,31,31,30,31,30,31];
 		
 		//holiday data
-		var holidayData;
-	
+		var arrayDate = [];
+		
+		//var for setData
+		var tglMDP;
+		var tglRede;
+		var tglTable;
+		var tglPelunasan;
+		var tglAFI;
+		var tglDR;
+		var tglIN;
+		var tglHmin1;
+		tglPenyerahan;
+		
+		//extend
+		var month1Name;
+		var month2Name;
+		
 		function initPage()
 		{
-			document.getElementById("profil1").style.visibility="hidden";
-			document.getElementById("profil2").style.visibility="hidden";
+			//document.getElementById("profil1").style.visibility="hidden";
+			//document.getElementById("profil2").style.visibility="hidden";
+			//document.getElementById("paramBulan1").style.visibility="hidden";
+			//document.getElementById("paramBulan2").style.visibility="hidden";
+			loadHolidayData();
 			setData();
 			createTable();
 			//setElement();
+		}
+		
+		function loadHolidayData()
+		{
+			if (window.XMLHttpRequest)
+			{
+				xhttp=new XMLHttpRequest();
+			}
+			else
+		    {
+				xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+			
+			xhttp.open("GET","holiday.xml",false);
+			
+			xhttp.send(null);
+			xmlDoc =  xhttp.responseXML;
+			
+			//get data from xml tag
+			date = xmlDoc.getElementsByTagName('date');
+			dateLength = date.length;
+
+			for(i=0;i<dateLength;i++) {
+				arrayDate[i] = date[i].childNodes[0].nodeValue;
+			}
 		}
 		
 		function parseDate(tempDate)
@@ -152,11 +198,13 @@
 		
 				//tanggal IN
 				TglIN = new Date(TglDR);
-				var valueDateCKD = document.getElementById("timeCKD").options[document.getElementById("timeCKD").selectedIndex].value;
+				var valueDateCKD = form.timeCKD.value;
 				if(form.paramTipe[0].checked && valueDateCKD == "6" ) {		
 						for(i=0;i<6;i++) {
 							TglIN.setDate(TglIN.getDate()+1);
-							if(TglIN.getDay()==0)i--;
+							if(TglIN.getDay()==0) {
+								i--;
+							}
 							else {
 								if(arrayDate.indexOf(parseDateSlash(TglIN)) != -1)i--;
 							}
@@ -165,7 +213,9 @@
 				else{
 						for(i=0;i<4;i++){
 							TglIN.setDate(TglIN.getDate()+1);
-							if(TglIN.getDay()==0)i--;
+							if(TglIN.getDay()==0) {
+								i--;
+							}
 							else {
 								if(arrayDate.indexOf(parseDateSlash(TglIN)) != -1)i--;
 							}
@@ -176,7 +226,7 @@
 				
 				//tanggal H - 1
 				TglHmin1 = new Date(TglAFI);
-				var valueDateCKD = document.getElementById("timeCKD").options[document.getElementById("timeCKD").selectedIndex].value;
+				var valueDateCKD = form.timeCKD.value;
 				//jika CKD
 				if(form.paramTipe[0].checked) {
 					for(i=0;i<17;i++) {
@@ -236,7 +286,7 @@
 			else if(flagSTNK == "stnk") {
 				//tanggal H - 1
 				TglHmin1 = new Date(TglAFI);
-				var valueDateCKD = document.getElementById("timeCKD").options[document.getElementById("timeCKD").selectedIndex].value;
+				var valueDateCKD = form.timeCKD.value;
 				//jika CKD
 				if(form.paramTipe[0].checked) {
 						for(i=0;i<10;i++){
@@ -303,6 +353,11 @@
 	
 		function createTable()
 		{	
+			document.getElementById("paramBulan1").innerHTML = monthNames[tglRede.getMonth()];
+			if(monthNames[tglRede.getMonth()] != monthNames[tglPenyerahan.getMonth()]) {
+				document.getElementById("paramBulan2").innerHTML = monthNames[tglPenyerahan.getMonth()];
+			}
+			
 			/*var listBulan = [29,31,28,31,30,31,30,31,31,30,31,30,31];
 			var bulanReady;
 			if(form.paramMDP[0].checked) { 
@@ -318,6 +373,7 @@
 			}*/
 			
 			//month1
+			
 			var start = 1;
 			var day = 31;
 			var table = "<table border='1px' width='600px' height='480px'>" + 
@@ -344,7 +400,7 @@
 								"<span id='h7'></span>" +
 							"</th>" +
 						"</tr>" + "<tr>";
-			var filledTable = fillTable(start, day);
+			var filledTable = fillTable(start, day, 1);
 			table += filledTable;
 			document.getElementById("profil1").innerHTML = table;
 			
@@ -385,7 +441,7 @@
 			}*/
 		}
 		
-		function fillTable(start, day)
+		function fillTable(start, day, month)
 		{
 			var table = "";
 			for(i = start; i <= day; i++) {
