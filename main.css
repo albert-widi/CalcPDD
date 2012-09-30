@@ -111,20 +111,27 @@ li:first-child{
 }
 
 /*PROFILE DIV---------------------------------*/
-#paramBulan{
+#paramBulan1{
 	float:left;
 	width:100%;
 	padding-left:143px;
 }
 
-#profil{
+#paramBulan2{
+	float:left;
+	width:100%;
+	padding-left:143px;
+}
+
+#profil1, #profil2{
 	float:left;
 	display:block;
 	width:100%;
 	line-height: 40px;
 }
 
-#profil th{
+
+#profil1 th, #profil2 th{
 	margin:0px; 
 	padding:0px;
 	height:20px;
@@ -132,12 +139,12 @@ li:first-child{
 	line-height:normal;
 }
 
-#profil tr{
+#profil1 tr, #profil2 tr{
 	margin:0px; 
 	padding:0px;
 }
 
-#profil td{
+#profil1 td, #profil2 td{
 	margin:0px; 
 	padding:0px; 
 	vertical-align:top; 
@@ -159,20 +166,26 @@ li:first-child{
 	position:relative;
 }
 
-#profil td p{
+#profil1 td p, #profil2 td p{
 	position:absolute;
 	margin: 20px 0px 0px 19px;
 	font-size:large;
 	font-weight:bold;
 }
-/*lebihDate DIV---------------------------------*/
-#lebihDate{
+/*ErrorContainer DIV---------------------------------*/
+#errorContainer{
 	display:block;
-	width:100%;
-	padding-top:20px;
-	float:left;	
+	color:#F00;
+	font-size:12px;
+	text-align:center;
+	width: 37%;
+    margin: auto;
 }
 
+#errorContainer ul li{
+	list-style-type:circle;
+	margin-left:0px;
+}
 
 
 /*SUBMIT DIV---------------------------------*/

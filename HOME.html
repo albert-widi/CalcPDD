@@ -7,13 +7,91 @@
 <script type='Text/JavaScript' src='scw.js'></script>
 <script type='Text/JavaScript' src='algoPDD.js'></script>
 <script type="text/javascript">
+	var error = [20];
+	//main function
+	function openResult(form)
+	{
+		checkForm(form);
+		var open = window.open("RESULT.html");
+		open.form = form;
+	}
+	
+	function checkForm(form)
+	{
+		//init var checking
+		var errorCount = 0;
+		var tempDateMDP = form.dateMDP.value;
+		var tempDateRede = form.dateReady.value;
+		var NoSPK = form.nomorSPK.value;
+		var NamaPelanggan = form.namaPelanggan.value;
+		var telpon = form.noTelepon.value;
+		var hp = form.noHP.value;
+		var NamaKendaraan = form.namaKendaraan.value;
+		var WarnaKendaraan = form.warnaKendaraan.value;
+		var PembayaranDll = form.PembayaranDLL.value;
+		
+		if(form.paramMDP[0].checked && tempDateMDP == form.dateMDP.defaultValue) {
+			error[errorCount] = "Pilih Tanggal MDP";
+			errorCount++;
+		}
+		if(!form.paramMDP[0].checked && !form.paramMDP[1].checked) {
+			error[errorCount] = "Pilih MDP atau Ready";
+			errorCount++;
+		}
+		if(NoSPK == form.nomorSPK.defaultValue || tempDateRede == form.dateReady.defaultValue ) {
+			error[errorCount] = "Nomor SPK atau Tanggal Ready masih kosong";
+			errorCount++;
+		}
+		if(NamaPelanggan == form.namaPelanggan.defaultValue) {
+			error[errorCount] = "Nama Pelanggan masih kosong";
+			errorCount++;
+		}
+		if(telpon == form.noTelepon.defaultValue && hp == form.noHP.defaultValue) {
+			error[errorCount] = "Nomor Telepon atau HP masih kosong";
+			errorCount++;
+		}
+		if(NamaKendaraan == form.namaKendaraan.defaultValue) {
+			error[errorCount] = "Nama Kendaraan masih kosong";
+			errorCount++;
+		}
+		if(!form.paramTipe[0].checked && !form.paramTipe[1].checked) {
+			error[errorCount] = "Pilih CKD atau CBU";
+			errorCount++;
+		}
+		if(WarnaKendaraan == form.warnaKendaraan.defaultValue) { 
+			error[errorCount] = "Warna Kendaraan masih kosong";
+			errorCount++;
+		}
+		if(!form.paramPembayaran[0].checked && !form.paramPembayaran[1].checked && !form.paramPembayaran[2].checked && !form.paramPembayaran[3].checked && !form.paramPembayaran[4].checked && PembayaranDll == form.PembayaranDLL.defaultValue) {
+			error[errorCount] = "Tentukan Cara Pembayaran";
+			errorCount++;
+		}
+		if(!form.paramSTNK[0].checked && !form.paramSTNK[1].checked) { 
+			error[errorCount] = "Pilih STNK atau Tanpa STNK";
+			errorCount++;
+		}
+		
+		if(errorCount != 0) {
+			var errorCode = "Error has been occured !<ul style='border:1px solid #F00;'>";
+			for(i = 0; i < errorCount; i++) {
+				errorCode += "<li>" + error[i] + "</li></br>";
+			}
+		   errorCode += "</ul>";
+		   
+		   document.getElementById("errorContainer").innerHTML = errorCode;
+		   document.getElementById("errorContainer").scrollIntoView();
+		   throw "err30";
+		}
+		else {
+			return;
+		}
+	}
 	
 	function resetField()
 	{
 		//document.getElementById("namaPelanggan").innerHTML = "";
 		//document.getElementById("paramPembayaran").innerHTML = document.getElementById("paramPembayaran").defaultValue;
 	}
-	
 
 	function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
 	function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
@@ -56,16 +134,16 @@
 								 }
 							
 						}
-	function eSTNK(a){
-							if(a.value == "stnk") {
-													document.getElementById("paramPilPol").disabled=false;
-												 }
-							else {
-									document.getElementById("paramPilPol").disabled=true;
-								 	document.getElementById("paramPilPol").checked = false;
-								 }
-							
-						}
+	function eSTNK(a) {
+		if(a.value == "stnk") {
+								document.getElementById("paramPilPol").disabled=false;
+							 }
+		else {
+				document.getElementById("paramPilPol").disabled=true;
+			 	document.getElementById("paramPilPol").checked = false;
+			 }
+		
+	}
 </script>
 </head>
 
@@ -74,13 +152,13 @@
         <div id="top"> 
             <div  align="center"><img src="logo plato.jpg" width="215" height="43"/></div>
             <div id="menubar">
-               <ul>
+               <ul >
                	<li><a href="HOME.html">CALCULATOR</a></li>
-                <li><a href="List Customer.html">LIST</a></li>
-                <li><a href="#">CALENDER</a></li>
                 </ul>
             </div>
         </div>
+        
+        
         
         <div id="content-wrap">
         	<div id="input-nya">
@@ -147,7 +225,7 @@
                         	
                         </td>
                         <td>
-                        	<input type="radio" name="paramTipe" value="ckd" onclick="eTimeCKD(this)" /><span>CKD</span>
+                        	<input type="radio" id="paramCKD" name="paramTipe" value="ckd" onclick="eTimeCKD(this)" /><span>CKD</span>
                             &nbsp;&nbsp;
                             <select id="timeCKD" disabled="disabled">
                                 <option value="" style="display:none;" selected="selected">Pilih hari</option>
@@ -155,7 +233,7 @@
                                 <option value="6">6 Hari</option>
                             </select>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="paramTipe" value="cbu" onclick="eTimeCKD(this)" /><span>CBU</span>
+							<input type="radio" id="paramCBU" name="paramTipe" value="cbu" onclick="eTimeCKD(this)" /><span>CBU</span>
                         </td>
                     </tr>
                     <tr>
@@ -215,319 +293,16 @@
                     </tr>
                     <tr>
                         <td colspan="3" align="center">
-                        	<input type="button" size="30" value="Submit" style="width:180px; height:50px;" onClick="testResults(this.form)"  />
+                        	<input type="button" size="30" value="Submit" style="width:180px; height:50px;" onClick="openResult(this.form);"  />
+                            <button type="submit" onClick="resetField()" style="height:50px; width:100px;">Refresh</button>
                         </td>
                     </tr>
                 </table>	 
             </form>
             </div>
-            <br />
-            <span id="paramBulan">Bulan : </span>
-        	<div id="profil" align="center">
-            	
-            	
-            	<table id="tablePDD" border="1px" width="600px" height="600px">
-                	<tr>
-                    	<th>
-                        	<span id="h1"> </span>
-                        </th>
-                        <th>                    	
-                            <span id="h2"> </span>
-                        </th>
-                        <th>
-                        	<span id="h3"> </span> 
-                        </th>
-                        <th>
-                        	<span id="h4"> </span> 
-                        </th>
-                        <th>
-                        	<span id="h5"> </span> 
-                        </th>
-                        <th>
-                            <span id="h6"> </span>
-                        </th>
-                        <th>
-                            <span id="h7"> </span>
-                        </th>
-                    </tr>
-                	<tr>
-                    	<td id="d1">
-                        	<div id="mini-Date"><span>1</span></div>
-                            <p id="isi1"></p>
-   
-                        </td>
-                        <td id="d2">
-                        	<div id="mini-Date"><span>2</span></div>
-                            <p id="isi2" align="center"></p>    
-                        </td>
-                        <td id="d3">
-                        	<div id="mini-Date"><span>3</span></div>
-                            <p id="isi3"></p>
-                        </td>
-                        <td id="d4">
-                        	<div id="mini-Date"><span>4</span></div>
-                            <p id="isi4"></p>
-                        </td>
-                        <td id="d5">
-                        	<div id="mini-Date"><span>5</span></div>
-                            <p id="isi5"></p>
-                        </td>
-                        <td id="d6">
-                        	<div id="mini-Date"><span>6</span></div>
-                            <p id="isi6"></p>
-                        </td>
-                        <td id="d7">
-                        	<div id="mini-Date"><span>7</span></div>
-                            <p id="isi7"></p>
-                        </td>
-                    </tr>
-                   <tr>
-                    	<td id="d8">
-                        	<div id="mini-Date"><span>8</span></div>
-                            <p id="isi8"></p>
-                        </td>
-                        <td id="d9">
-                        	<div id="mini-Date"><span>9</span></div>
-                            <p id="isi9"></p>
-                        </td>
-                        <td id="d10">
-                        	<div id="mini-Date"><span>10</span></div>
-                            <p id="isi10"></p>
-                        </td>
-                        <td id="d11">
-                        	<div id="mini-Date"><span>11</span></div>
-                            <p id="isi11"></p>
-                        </td>
-                        <td id="d12">
-                        	<div id="mini-Date"><span>12</span></div>
-                            <p id="isi12"></p>
-                        </td>
-                        <td id="d13">
-                        	<div id="mini-Date"><span>13</span></div>
-                            <p id="isi13"></p>
-                        </td>
-                        <td id="d14">
-                        	<div id="mini-Date"><span>14</span></div>
-                            <p id="isi14"></p>
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td id="d15">
-                        	<div id="mini-Date"><span>15</span></div>
-                            <p id="isi15"></p>
-                        </td>
-                        <td id="d16">
-                        	<div id="mini-Date"><span>16</span></div>
-                            <p id="isi16"></p>
-                        </td>
-                        <td id="d17">
-                        	<div id="mini-Date"><span>17</span></div>
-                            <p id="isi17"></p>
-                        </td>
-                        <td id="d18">
-                        	<div id="mini-Date"><span>18</span></div>
-                            <p id="isi18"></p>
-                        </td>
-                        <td id="d19">
-                        	<div id="mini-Date"><span>19</span></div>
-                            <p id="isi19"></p>
-                        </td>
-                        <td id="d20">
-                        	<div id="mini-Date"><span>20</span></div>
-                            <p id="isi20"></p>
-                        </td>
-                        <td id="d21">
-                        	<div id="mini-Date"><span>21</span></div>
-                            <p id="isi21"></p>
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td id="d22">
-                        	<div id="mini-Date"><span>22</span></div>
-                            <p id="isi22"></p>
-                        </td>
-                        <td id="d23">
-                        	<div id="mini-Date"><span>23</span></div>
-                            <p id="isi23"></p>
-                        </td>
-                        <td id="d24">
-                        	<div id="mini-Date"><span>24</span></div>
-                            <p id="isi24"></p>
-                        </td>
-                        <td id="d25">
-                        	<div id="mini-Date"><span>25</span></div>
-                            <p id="isi25"></p>
-                        </td>
-                        <td id="d26">
-                        	<div id="mini-Date"><span>26</span></div>
-                            <p id="isi26"></p>
-                        </td>
-                        <td id="d27">
-                        	<div id="mini-Date"><span>27</span></div>
-                            <p id="isi27"></p>
-                        </td>
-                        <td id="d28">
-                        	<div id="mini-Date"><span>28</span></div>
-                            <p id="isi28"></p>
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td id="d29">
-                        	<div id="mini-Date"><span>29</span></div>
-                            <p id="isi29"></p>
-                        </td>
-                        <td id="d30">
-                        	<div id="mini-Date"><span>30</span></div>
-                            <p id="isi30"></p>
-                        </td>
-                        <td id="d31">
-                        	<div id="mini-Date"><span>31</span></div>
-                            <p id="isi31"></p>
-                        </td>
-                        <td id="d32">
-                        	<div id="mini-Date"><span>1</span></div>
-                            <p id="isi32"></p>
-                        </td>
-                        <td id="d33">
-                        	<div id="mini-Date"><span>2</span></div>
-                            <p id="isi33"></p>
-                        </td>
-                        <td id="d34">
-                        	<div id="mini-Date"><span>3</span></div>
-                            <p id="isi34"></p>
-                        </td>
-                        <td id="d35">
-                        	<div id="mini-Date"><span>4</span></div>
-                            <p id="isi35"></p>
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td id="d36">
-                        	<div id="mini-Date"><span>5</span></div>
-                            <p id="isi36"></p>
-                        </td>
-                        <td id="d37">
-                        	<div id="mini-Date"><span>6</span></div>
-                            <p id="isi37"></p>
-                        </td>
-                        <td id="d38">
-                        	<div id="mini-Date"><span>7</span></div>
-                            <p id="isi38"></p>
-                        </td>
-                        <td id="d39">
-                        	<div id="mini-Date"><span>8</span></div>
-                            <p id="isi39"></p>
-                        </td>
-                        <td id="d40">
-                        	<div id="mini-Date"><span>9</span></div>
-                            <p id="isi40"></p>
-                        </td>
-                        <td id="d41">
-                        	<div id="mini-Date"><span>10</span></div>
-                            <p id="isi41"></p>
-                        </td>
-                        <td id="d42">
-                        	<div id="mini-Date"><span>11</span></div>
-                            <p id="isi42"></p>
-                        </td>
-                  	</tr>
-                  	<tr>
-                        <td id="d43">
-                        	<div id="mini-Date"><span>12</span></div>
-                            <p id="isi43"></p>
-                        </td>
-                        <td id="d44">
-                        	<div id="mini-Date"><span>13</span></div>
-                            <p id="isi44"></p>
-                        </td>
-                        <td id="d45">
-                        	<div id="mini-Date"><span>14</span></div>
-                            <p id="isi45"></p>
-                        </td>
-                        <td id="d46">
-                        	<div id="mini-Date"><span>15</span></div>
-                            <p id="isi46"></p>
-                        </td>
-                        <td id="d47">
-                        	<div id="mini-Date"><span>16</span></div>
-                            <p id="isi47"></p>
-                        </td>
-                        <td id="d48">
-                        	<div id="mini-Date"><span>17</span></div>
-                            <p id="isi48"></p>
-                        </td>
-                        <td id="d49">
-                        	<div id="mini-Date"><span>18</span></div>
-                            <p id="isi49"></p>
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td id="d50">
-                        	<div id="mini-Date"><span>19</span></div>
-                            <p id="isi50"></p>
-                        </td>
-                        <td id="d51">
-                        	<div id="mini-Date"><span>20</span></div>
-                            <p id="isi51"></p>
-                        </td>
-                        <td id="d52">
-                        	<div id="mini-Date"><span>21</span></div>
-                            <p id="isi52"></p>
-                        </td>
-                        <td id="d53">
-                        	<div id="mini-Date"><span>22</span></div>
-                            <p id="isi53"></p>
-                        </td>
-                        <td id="d54">
-                        	<div id="mini-Date"><span>23</span></div>
-                            <p id="isi54"></p>
-                        </td>
-                        <td id="d55">
-                        	<div id="mini-Date"><span>24</span></div>
-                            <p id="isi55"></p>
-                        </td>
-                        <td id="d56">
-                        	<div id="mini-Date"><span>25</span></div>
-                            <p id="isi56"></p>
-                        </td>	
-                    </tr>
-                    <tr>
-                    	<td id="d57">
-                        	<div id="mini-Date"><span>26</span></div>
-                            <p id="isi57"></p>
-                        </td>
-                        <td id="d58">
-                        	<div id="mini-Date"><span>27</span></div>
-                            <p id="isi58"></p>
-                        </td>
-                        <td id="d59">
-                        	<div id="mini-Date"><span>28</span></div>
-                            <p id="isi59"></p>
-                        </td>
-                        <td id="d60">
-                        	<div id="mini-Date"><span>29</span></div>
-                            <p id="isi60"></p>
-                        </td>
-                        <td id="d61">
-                        	<div id="mini-Date"><span>30</span></div>
-                            <p id="isi61"></p>
-                        </td>
-                        <td id="d62">
-                        	<div id="mini-Date"><span>31</span></div>
-                            <p id="isi62"></p>
-                        </td>
-                    </tr>
-                </table> 
-            </div>
-            <div id="lebihDate" align="center">
-           
-            </div>
-            <div id="divSubmit" align="center">
-            	<form>
-                	<input type="button" value="Simpan Form" id="simpanForm"  onClick="testResults2(this.form)" />
-                    <button type="submit" onClick="resetField()" style="height:50px; width:100px;">Refresh</button>
-                </form>
-            </div>
+            <div id="errorContainer">
+            
+        	</div>
         </div>
         
         <div id="bottom">

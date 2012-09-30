@@ -351,7 +351,7 @@ function testResults (form) {
 								if(tglTable.getDay() == 5 )document.getElementById("h"+i).innerHTML="Jumat";
 								if(tglTable.getDay() == 6 )document.getElementById("h"+i).innerHTML="Sabtu";
 							}
-							
+							//Day in a month and monday blocking
 							if((i == 31 && tglTable.getDate() == 1) || (i == 62 && tglTable.getDate() == 1)) {
 								document.getElementById("d"+i).style.backgroundColor = "black";
 								document.getElementById("d"+i).style.color = "black";	
@@ -372,25 +372,6 @@ function testResults (form) {
 									document.getElementById("d"+i).style.color = "white";	
 								}
 							}
-							/*else if(i==62 && tglTable.getDate() == 1) {
-								document.getElementById("d"+i).style.backgroundColor = "black";
-								document.getElementById("d"+i).style.color = "black";	
-								i++;
-								if(tglTable.getDay() == 0 ) {
-									document.getElementById("d"+i).style.backgroundColor = "blue";
-									document.getElementById("d"+i).style.color = "white";
-								}
-							}
-							else if(i==61 && tglTable.getDate() == 1) {
-								for(b = i ; b <=31 ; b++){
-									document.getElementById("d"+i).style.backgroundColor = "black";
-									document.getElementById("d"+i).style.color = "black";
-									i++;
-								}
-								if(tglTable.getDay() == 0 ){document.getElementById("d"+i).style.backgroundColor = "blue";
-													 document.getElementById("d"+i).style.color = "white";	
-													}
-							}*/
 							else if((i==29 && tglTable.getDate() == 1) || (i == 60 && tglTable.getDate() == 1)) {
 								for(b = i ; b <=i+2 ; b++){
 									document.getElementById("d"+i).style.backgroundColor = "black";
