@@ -411,7 +411,7 @@ function createTable()
 	document.getElementById("profil1").style.visibility="visible";
 	//month2
 	if(plus1Month) {
-		tglTable.setDate(tglTable.getDate()+1);
+		//tglTable.setDate(tglTable.getDate()+1);
 		var day2;
 		if(month2 == 1 && year2%4 ==0) {
 			day2 = febKabisat;
