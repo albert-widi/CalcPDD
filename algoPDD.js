@@ -387,18 +387,18 @@ function createTable()
 	if(plus1Month) {
 		tglTable.setDate(tglTable.getDate()+1);
 		var day2;
-		if(mont2 == 2 && year2%4 ==0) {
-			day = monthDayList[0];
+		if(month2 == 2 && year2%4 ==0) {
+			day2 = monthDayList[0];
 		}
 		else {
-			day = monthDayList[month2];
+			day2 = monthDayList[month2];
 		}
 		
 		tableHeader2 = "<table border='1px' width='600px' height='480px'>" + "<tr>";
 		var table2 = "<tr>";
-		var filledTable2 = fillTable(day, 2);
+		var filledTable2 = fillTable(day2, 2);
 		table2 += filledTable2;
-		tableHeader2 += table;
+		tableHeader2 += table2;
 		document.getElementById("profil2").innerHTML = tableHeader2;
 		document.getElementById("paramBulan2").style.visibility="visible";
 		document.getElementById("profil2").style.visibility="visible";
@@ -482,7 +482,7 @@ function fillTableElement()
 	}
 	
 	//tglReady
-	if(i == tglRede.getDate()) {
+	if(tglTable.getDate() == tglRede.getDate() && tglTable.getMonth() == tglRede.getMonth()) {
 		return "<td id='d" + i +"' style='background-color:red; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'>Ready</p></td>";
 	}
 	
