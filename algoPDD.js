@@ -11,7 +11,8 @@ var WarnaKendaraan = form.warnaKendaraan.value;
 var PembayaranDll = form.PembayaranDLL.value;
 var monthNames = ["Januari", "Februari", "Maret", "April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 //0 for %4 february
-var monthDayList = [29,31,28,31,30,31,30,31,31,30,31,30,31];
+var monthDayList = [31,28,31,30,31,30,31,31,30,31,30,31];
+var febKabisat = 29;
 
 //holiday data
 var arrayDate = [];
@@ -368,8 +369,8 @@ function createTable()
 
 	var start = 1;
 	var day;
-	if(month1 == 2 && year1%4 == 0) {
-		day = monthDayList[0];
+	if(month1 == 1 && year1%4 == 0) {
+		day = febKabisat;
 	}
 	else {
 		day = monthDayList[month1];
@@ -387,8 +388,8 @@ function createTable()
 	if(plus1Month) {
 		tglTable.setDate(tglTable.getDate()+1);
 		var day2;
-		if(month2 == 2 && year2%4 ==0) {
-			day2 = monthDayList[0];
+		if(month2 == 1 && year2%4 ==0) {
+			day2 = febKabisat;
 		}
 		else {
 			day2 = monthDayList[month2];
