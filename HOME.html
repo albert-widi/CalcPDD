@@ -12,6 +12,7 @@
 	function openResult(form)
 	{
 		checkForm(form);
+		document.getElementById("errorContainer").innerHTML = "";
 		var open = window.open("RESULT.html");
 		open.form = form;
 	}
