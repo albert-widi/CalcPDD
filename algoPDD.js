@@ -50,7 +50,6 @@ function initPage(form)
 	loadHolidayData();
 	setData(form);
 	createTable(form);
-	//setElement();
 }
 
 function loadHolidayData()
@@ -186,8 +185,12 @@ function setData()
 	
 	//cek STNK
 	var flagSTNK;
-	if(form.paramSTNK[0].checked)flagSTNK = form.paramSTNK[0].value;
-	else flagSTNK = form.paramSTNK[1].value;
+	if(form.paramSTNK[0].checked) { 
+		flagSTNK = form.paramSTNK[0].value;
+	}
+	else { 
+		flagSTNK = form.paramSTNK[1].value;
+	}
 	if(flagSTNK == "nostnk") {
 
 		//tanggal DR
@@ -196,7 +199,9 @@ function setData()
 			TglDR.setDate(TglDR.getDate()+1);
 			if(TglDR.getDay()==0)i--;
 			else {
-				if(arrayDate.indexOf(parseDateSlash(TglDR)) != -1)i--;
+				if(arrayDate.indexOf(parseDateSlash(TglDR)) != -1) {
+					i--;
+				}
 			}
 		}	
 
@@ -210,7 +215,9 @@ function setData()
 						i--;
 					}
 					else {
-						if(arrayDate.indexOf(parseDateSlash(TglIN)) != -1)i--;
+						if(arrayDate.indexOf(parseDateSlash(TglIN)) != -1) { 
+							i--;
+						}
 					}
 				}
 		}
@@ -221,7 +228,9 @@ function setData()
 						i--;
 					}
 					else {
-						if(arrayDate.indexOf(parseDateSlash(TglIN)) != -1)i--;
+						if(arrayDate.indexOf(parseDateSlash(TglIN)) != -1) {
+							i--;
+						}
 					}
 				}
 		}	
@@ -235,9 +244,13 @@ function setData()
 		if(form.paramTipe[0].checked) {
 			for(i=0;i<17;i++) {
 				TglHmin1.setDate(TglHmin1.getDate()+1);
-				if(TglHmin1.getDay()==0 || TglHmin1.getDay()== 6)i--;
+				if(TglHmin1.getDay()==0 || TglHmin1.getDay()== 6) {
+					i--;
+				}
 				else {
-					if(arrayDate.indexOf(parseDateSlash(TglHmin1)) != -1)i--;
+					if(arrayDate.indexOf(parseDateSlash(TglHmin1)) != -1) { 
+						i--;
+					}
 				}
 			}
 		}
@@ -245,7 +258,9 @@ function setData()
 		else {								
 			for(i=0;i<30;i++) {
 				TglHmin1.setDate(TglHmin1.getDate()+1);
-				if(TglHmin1.getDay()==0 || TglHmin1.getDay()==6)i--;
+				if(TglHmin1.getDay()==0 || TglHmin1.getDay()==6) { 
+					i--;
+				}
 				else {
 					if(arrayDate.indexOf(parseDateSlash(TglHmin1)) != -1) {
 						i--;
@@ -262,7 +277,9 @@ function setData()
 				i--;
 			}
 			else {
-						if(arrayDate.indexOf(parseDateSlash(TglIN)) != -1)i--;
+				if(arrayDate.indexOf(parseDateSlash(TglIN)) != -1) { 
+					i--;
+				}
 			}
 		}
 
@@ -271,18 +288,26 @@ function setData()
 		if(form.paramTipe[0].checked && valueDateCKD == "6" ){		
 				for(i=0;i<6;i++){
 					TglDR.setDate(TglDR.getDate()-1);
-					if(TglDR.getDay()==0)i--;
+					if(TglDR.getDay()==0) { 
+						i--;
+					}
 					else {
-						if(arrayDate.indexOf(parseDateSlash(TglDR)) != -1)i--;
+						if(arrayDate.indexOf(parseDateSlash(TglDR)) != -1) { 
+							i--;
+						}
 					}
 				}
 		}
 		else{
 				for(i=0;i<4;i++){
 					TglDR.setDate(TglDR.getDate()-1);
-					if(TglDR.getDay()==0)i--;
+					if(TglDR.getDay()==0) { 
+						i--;
+					}
 					else {
-						if(arrayDate.indexOf(parseDateSlash(TglDR)) != -1)i--;
+						if(arrayDate.indexOf(parseDateSlash(TglDR)) != -1) { 
+							i--;
+						}
 					}
 				}
 		}
@@ -445,25 +470,18 @@ function fillDayName(dayNum)
 	{
 		case 0: 
 			return "Minggu";
-			break;
 		case 1:
 			return "Senin";
-			break;
 		case 2:
 			return "Selasa";
-			break;
 		case 3:
 			return "Rabu";
-			break;
 		case 4:
 			return "Kamis";
-			break;
 		case 5:
 			return "Jumat";
-			break;
 		case 6:
 			return "Sabtu";
-			break;
 	}
 }
 
