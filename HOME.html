@@ -67,6 +67,10 @@
 			error[errorCount] = "Tentukan Cara Pembayaran";
 			errorCount++;
 		}
+		if(form.paramPembayaran[4].checked && PembayaranDll == form.PembayaranDLL.defaultValue){
+			error[errorCount] = "Nama Asuransi Lain-lain masih kosong";
+			errorCount++;
+		}
 		if(!form.paramSTNK[0].checked && !form.paramSTNK[1].checked) { 
 			error[errorCount] = "Pilih STNK atau Tanpa STNK";
 			errorCount++;

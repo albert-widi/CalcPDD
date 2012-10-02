@@ -20,8 +20,9 @@ var arrayDate = [];
 //var for setData
 var tglMDP;
 var tglRede;
+var tglMobilRede;
 var tglTable;
-var tglPelunasan;
+var TglPelunasan;
 var tglAFI;
 var tglDR;
 var tglIN;
@@ -41,6 +42,40 @@ var plus1Month = false;
 var tableHeader;
 var tableHeader2;
 
+function insertInform(){
+	NoSPK = form.nomorSPK.value;
+	NamaPelanggan = form.namaPelanggan.value;
+	telpon = form.noTelepon.value;
+	hp = form.noHP.value;
+	NamaKendaraan = form.namaKendaraan.value;
+	WarnaKendaraan = form.warnaKendaraan.value;
+	PembayaranDll = form.PembayaranDLL.value;
+	
+	document.getElementById("iNoTaSPK").innerHTML = NoSPK + " / " + parseDate(tglRede);
+	document.getElementById("iNamaPel").innerHTML = NamaPelanggan;
+	if(telpon != form.noTelepon.defaultValue && hp != form.noHP.defaultValue){
+		document.getElementById("iTelHP").innerHTML = telpon + " / " +hp;	
+	}
+	else if(telpon == form.noTelepon.defaultValue){
+		document.getElementById("iTelHP").innerHTML = hp;
+	}
+	else document.getElementById("iTelHP").innerHTML = telpon;
+	document.getElementById("iTypeWarna").innerHTML = NamaKendaraan + " / " + WarnaKendaraan;
+	
+	if(form.paramPembayaran[0].checked)document.getElementById("iBayar").innerHTML = form.paramPembayaran[0].value;
+	else if(form.paramPembayaran[1].checked)document.getElementById("iBayar").innerHTML = form.paramPembayaran[1].value;
+	else if(form.paramPembayaran[2].checked)document.getElementById("iBayar").innerHTML = form.paramPembayaran[2].value;
+	else if(form.paramPembayaran[3].checked)document.getElementById("iBayar").innerHTML = form.paramPembayaran[3].value;
+	else document.getElementById("iBayar").innerHTML = "Lain-lain ("+form.PembayaranDLL.value+")";
+
+	
+	document.getElementById("iLunas").innerHTML = parseDate(TglPelunasan);
+	
+	if(form.paramSTNK[0].checked)document.getElementById("iSerah").innerHTML = parseDate(tglPenyerahan) + " TANPA STNK";
+	else if(form.paramSTNK[1].checked)document.getElementById("iSerah").innerHTML = parseDate(tglPenyerahan) + " DENGAN STNK";
+	
+}
+
 function initPage(form)
 {
 	document.getElementById("profil1").style.visibility="hidden";
@@ -50,6 +85,8 @@ function initPage(form)
 	loadHolidayData();
 	setData(form);
 	createTable(form);
+	insertInform();
+	
 }
 
 function loadHolidayData()
@@ -110,6 +147,15 @@ function setData()
 	//cek value MDP atau Ready
 	if(form.paramMDP[0].checked) { 
 		flagMDPRede = form.paramMDP[0].value;
+		
+		tglMobilRede = new Date(tglMDP);
+		for(i=0;i<2;i++){
+			tglMobilRede.setDate(tglMobilRede.getDate()+1);
+			if(tglMobilRede.getDay()==0 )i--;
+			else {
+				if(arrayDate.indexOf(parseDateSlash(tglMobilRede)) != -1)i--;
+			}
+		}
 	}
 	else {
 		flagMDPRede = form.paramMDP[1].value;
@@ -133,7 +179,13 @@ function setData()
 	else {
 		flagPembayaran = form.PembayaranDLL.value;
 	}
-	TglPelunasan = new Date(tglRede);
+	
+	//MDP or Ready
+	if(flagMDPRede == "mdp") {
+		TglPelunasan = new Date(tglMobilRede);	
+	}
+	else TglPelunasan = new Date(tglRede);
+	
 	if(flagPembayaran == "cash" && form.paramBedaBank.checked) {
 		for(i=0;i<3;i++){
 			TglPelunasan.setDate(TglPelunasan.getDate()+1);
@@ -172,11 +224,9 @@ function setData()
 	
 	//tanggal AFI
 	TglAFI = new Date(TglPelunasan);
-	for(i=0;i<1;i++) {
+	for(i=0;i<1;i++){
 			TglAFI.setDate(TglAFI.getDate()+1);
-			if(TglAFI.getDay()==6 || TglAFI.getDay()==0 ) {
-				i--;
-			}	
+			if(TglAFI.getDay()==6 || TglAFI.getDay()==0 )i--;
 			else {
 				if(arrayDate.indexOf(parseDateSlash(TglAFI)) != -1)i--;
 			}
@@ -191,7 +241,7 @@ function setData()
 	else { 
 		flagSTNK = form.paramSTNK[1].value;
 	}
-	if(flagSTNK == "nostnk") {
+	if(flagSTNK == "nostnk") {			// JIka tanpa STNK
 
 		//tanggal DR
 		TglDR = new Date(TglAFI);
@@ -378,6 +428,8 @@ function setData()
 			if(arrayDate.indexOf(parseDateSlash(tglPenyerahan)) != -1)i--;
 		}
 	}
+	
+
 }
 
 function createTable()
@@ -401,7 +453,7 @@ function createTable()
 		day = monthDayList[month1];
 	}
 	
-	tableHeader = "<table border='1px' width='600px' height='480px'>" + "<tr>";
+	tableHeader = "<table border='1px' width='700px' height='390px'>" + "<tr>";
 	var table = "<tr>";
 	var filledTable = fillTable(day, 1);
 	table += filledTable;
@@ -420,7 +472,7 @@ function createTable()
 			day2 = monthDayList[month2];
 		}
 		
-		tableHeader2 = "<table border='1px' width='600px' height='480px'>" + "<tr>";
+		tableHeader2 = "<table border='1px' width='700px' height='390px'>" + "<tr>";
 		var table2 = "<tr>";
 		var filledTable2 = fillTable(day2, 2);
 		table2 += filledTable2;
@@ -496,38 +548,42 @@ function fillTableElement()
 	if(flagMDPRede == "mdp") {
 		//tglMDP
 		if(tglTable.getDate() == tglMDP.getDate() && tglTable.getMonth() == tglMDP.getMonth()) {
-			return "<td id='d" + i +"' style='backgroundColor:red; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'>MDP</p></td>";
+			return "<td id='d" + i +"'style='background:url(background_mdp.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+		}
+		if(tglTable.getDate() == tglMobilRede.getDate() && tglTable.getMonth() == tglMobilRede.getMonth()) {
+			return "<td id='d" + i +"'style='background:url(background_ready.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 		}
 	}
 	
-	//tglReady
+	//tglSPK
 	if(tglTable.getDate() == tglRede.getDate() && tglTable.getMonth() == tglRede.getMonth()) {
-		return "<td id='d" + i +"' style='background-color:red; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'>Ready</p></td>";
+	if(flagMDPRede == "mdp")return "<td id='d" + i +"' style='background:url(background_spk.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+	else return "<td id='d" + i +"' style='background:url(background_spk-mdp.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 	}
 	
 	//tgl Pelunasan
 	if(tglTable.getDate() == TglPelunasan.getDate() && tglTable.getMonth() == TglPelunasan.getMonth()) {
-		return "<td id='d" + i +"' style='background-color:yellow; color:black;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'>LNS</p></td>";
+		return "<td id='d" + i +"' style='background:url(background_lns.png) no-repeat; color:black;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 	}
 	
 	//tgl AFI
 	if(tglTable.getDate() == TglAFI.getDate() && tglTable.getMonth() == TglAFI.getMonth()) {
-		return "<td id='d" + i +"' style='background-color:grey; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'>AFI</p></td>";
+		return "<td id='d" + i +"' style='background:url(background_afi.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 	}
 	
 	//tgl DR
 	if(tglTable.getDate() == TglDR.getDate() && tglTable.getMonth() == TglDR.getMonth()) {
-		return "<td id='d" + i +"' style='background-color:DeepPink; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'>DR</p></td>";
+		return "<td id='d" + i +"' style='background:url(background_dr.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 	}
 	
 	//tgl IN
 	if(tglTable.getDate() == TglIN.getDate() && tglTable.getMonth() == TglIN.getMonth()) {
-		return "<td id='d" + i +"' style='background-color:black; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'>IN</p></td>";
+		return "<td id='d" + i +"' style='background:url(background_in.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 	}
 	
 	//tgl BSTB
 	if(tglTable.getDate() == tglPenyerahan.getDate() && tglTable.getMonth() == tglPenyerahan.getMonth() ){
-		return "<td id='d" + i +"' style='background-color:green; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'>BSTB</p></td>";
+		return "<td id='d" + i +"' style='background:url(background_deliv.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////

@@ -114,13 +114,18 @@ li:first-child{
 #paramBulan1{
 	float:left;
 	width:100%;
-	padding-left:143px;
+	padding-left:100px;
+	font-size:16px;
+	font-weight:bold;
 }
 
 #paramBulan2{
 	float:left;
 	width:100%;
-	padding-left:143px;
+	padding-left:100px;
+	font-size:16px;
+	font-weight:bold;
+	margin-top:15px;
 }
 
 #profil1, #profil2{
@@ -200,3 +205,42 @@ li:first-child{
 	height:50px;
 	width:100px;
 }
+
+/*INFORM WRAP-------------------------------*/
+
+#inform-wrap{
+	padding-left:100px;
+	text-align:left;
+	margin-bottom:20px;
+	font-size:15px;
+	font-weight:bold;
+}
+
+#inform-wrap tr{
+	height:25px;
+}
+
+#inform-wrap td:first-child{
+	width:240px;
+}
+
+/* informBawah-wrap ----------------------------*/
+#informBawah-wrap{
+	float:left;
+	position:relative;
+	display:block;
+	padding-left:100px;
+	margin-top:15px;
+	font-size:15px;
+	font-weight:bold;
+}
+
+#informBawah-wrap td:first-child{
+	width:300px;
+}
+
+
+
+
+
+
