@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Kalkulator PDD - HOME</title>
-<link href="main.css" type="text/css" rel="stylesheet" />
-<script type='Text/JavaScript' src='scw.js'></script>
-<script type='Text/JavaScript' src='algoPDD.js'></script>
+<link href="cssheets/main.css" type="text/css" rel="stylesheet" />
+<script type='Text/JavaScript' src='jscript/scw.js'></script>
+<script type='Text/JavaScript' src='jscript/algoPDD.js'></script>
 <script type="text/javascript">
 	var error = [20];
 	//main function
@@ -15,6 +15,14 @@
 		document.getElementById("errorContainer").innerHTML = "";
 		var open = window.open("RESULT.html");
 		open.form = form;
+	}
+	
+	function strToDate(tempDate){
+		
+		var a = tempDate.split("/");
+		var b = new Date(a[2],a[1]-1,a[0]);
+		
+		return b;
 	}
 	
 	function checkForm(form)
@@ -30,6 +38,8 @@
 		var NamaKendaraan = form.namaKendaraan.value;
 		var WarnaKendaraan = form.warnaKendaraan.value;
 		var PembayaranDll = form.PembayaranDLL.value;
+		
+		
 		
 		if(form.paramMDP[0].checked && tempDateMDP == form.dateMDP.defaultValue) {
 			error[errorCount] = "Pilih Tanggal MDP";
@@ -75,6 +85,8 @@
 			error[errorCount] = "Pilih STNK atau Tanpa STNK";
 			errorCount++;
 		}
+		
+		
 		
 		if(errorCount != 0) {
 			var errorCode = "Error has been occured !<ul style='border:1px solid #F00;'>";
@@ -155,7 +167,7 @@
 <body onload="loadData();">
 	<div id="container">
         <div id="top"> 
-            <div  align="center"><img src="logo plato.jpg" width="215" height="43"/></div>
+            <div  align="center"><img src="images/logo plato.jpg" width="215" height="43"/></div>
             <div id="menubar">
                <ul >
                	<li><a href="HOME.html">CALCULATOR</a></li>
@@ -310,7 +322,7 @@
         
         <div id="bottom">
         	<div>
-                <img src="footer.jpg" width="900" height="34" />
+                <img src="images/footer.jpg" width="900" height="34" />
                 Copyright 2012
             </div>
         </div>

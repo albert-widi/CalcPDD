@@ -79,7 +79,7 @@ li:first-child{
 #menubar{
 	height:50px;
 	overflow:hidden;
-	background-image: url(MenuBarTOP.jpg);
+	background-image:url(../images/MenuBarTOP.jpg);
 	background-position: 0px -14px;
 }
 

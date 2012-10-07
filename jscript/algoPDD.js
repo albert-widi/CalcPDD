@@ -569,42 +569,42 @@ function fillTableElement()
 	if(flagMDPRede == "mdp") {
 		//tglMDP
 		if(tglTable.getDate() == tglMDP.getDate() && tglTable.getMonth() == tglMDP.getMonth()) {
-			return "<td id='d" + i +"'style='background:url(background_mdp.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+			return "<td id='d" + i +"'style='background:url(images/background_mdp.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 		}
 		if(tglTable.getDate() == tglMobilRede.getDate() && tglTable.getMonth() == tglMobilRede.getMonth()) {
-			return "<td id='d" + i +"'style='background:url(background_ready.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+			return "<td id='d" + i +"'style='background:url(images/background_ready.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 		}
 	}
 	
 	//tglSPK
 	if(tglTable.getDate() == tglRede.getDate() && tglTable.getMonth() == tglRede.getMonth()) {
-	if(flagMDPRede == "mdp")return "<td id='d" + i +"' style='background:url(background_spk.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
-	else return "<td id='d" + i +"' style='background:url(background_spk-mdp.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+	if(flagMDPRede == "mdp")return "<td id='d" + i +"' style='background:url(images/background_spk.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+	else return "<td id='d" + i +"' style='background:url(images/background_spk-mdp.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 	}
 	
 	//tgl Pelunasan
 	if(tglTable.getDate() == TglPelunasan.getDate() && tglTable.getMonth() == TglPelunasan.getMonth()) {
-		return "<td id='d" + i +"' style='background:url(background_lns.png) no-repeat; color:black;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+		return "<td id='d" + i +"' style='background:url(images/background_lns.png) no-repeat; color:black;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 	}
 	
 	//tgl AFI
 	if(tglTable.getDate() == TglAFI.getDate() && tglTable.getMonth() == TglAFI.getMonth()) {
-		return "<td id='d" + i +"' style='background:url(background_afi.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+		return "<td id='d" + i +"' style='background:url(images/background_afi.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 	}
 	
 	//tgl DR
 	if(tglTable.getDate() == TglDR.getDate() && tglTable.getMonth() == TglDR.getMonth()) {
-		return "<td id='d" + i +"' style='background:url(background_dr.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+		return "<td id='d" + i +"' style='background:url(images/background_dr.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 	}
 	
 	//tgl IN
 	if(tglTable.getDate() == TglIN.getDate() && tglTable.getMonth() == TglIN.getMonth()) {
-		return "<td id='d" + i +"' style='background:url(background_in.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+		return "<td id='d" + i +"' style='background:url(images/background_in.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 	}
 	
 	//tgl BSTB
 	if(tglTable.getDate() == tglPenyerahan.getDate() && tglTable.getMonth() == tglPenyerahan.getMonth() ){
-		return "<td id='d" + i +"' style='background:url(background_deliv.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+		return "<td id='d" + i +"' style='background:url(images/background_deliv.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////
