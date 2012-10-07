@@ -259,7 +259,7 @@ function setData()
 		TglIN = new Date(TglDR);
 		var valueDateCKD = form.timeCKD.value;
 		if(form.paramTipe[0].checked && valueDateCKD == "6" ) {		
-				for(i=0;i<6;i++) {
+				for(i=0;i<6;i++)  {
 					TglIN.setDate(TglIN.getDate()+1);
 					if(TglIN.getDay()==0) {
 						i--;
@@ -335,7 +335,7 @@ function setData()
 
 		//tanggal DR
 		TglDR = new Date(TglIN);
-		if(form.paramTipe[0].checked && valueDateCKD == "6" ){		
+		if(form.paramTipe[0].checked && valueDateCKD == "6" ) {		
 				for(i=0;i<6;i++){
 					TglDR.setDate(TglDR.getDate()-1);
 					if(TglDR.getDay()==0) { 
