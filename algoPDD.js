@@ -11,8 +11,7 @@ var WarnaKendaraan = form.warnaKendaraan.value;
 var PembayaranDll = form.PembayaranDLL.value;
 var monthNames = ["Januari", "Februari", "Maret", "April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 //0 for %4 february
-var monthDayList = [31,28,31,30,31,30,31,31,30,31,30,31];
-var febKabisat = 29;
+var monthDayList = [31,28,31,30,31,30,31,31,30,31,30,31,29];
 
 //holiday data
 var arrayDate = [];
@@ -53,7 +52,8 @@ function insertInform(){
 	
 	document.getElementById("iNoTaSPK").innerHTML = NoSPK + " / " + parseDate(tglRede);
 	document.getElementById("iNamaPel").innerHTML = NamaPelanggan;
-	if(telpon != form.noTelepon.defaultValue && hp != form.noHP.defaultValue){
+	
+	if(telpon != form.noTelepon.defaultValue && hp != form.noHP.defaultValue) {
 		document.getElementById("iTelHP").innerHTML = telpon + " / " +hp;	
 	}
 	else if(telpon == form.noTelepon.defaultValue){
@@ -62,18 +62,31 @@ function insertInform(){
 	else document.getElementById("iTelHP").innerHTML = telpon;
 	document.getElementById("iTypeWarna").innerHTML = NamaKendaraan + " / " + WarnaKendaraan;
 	
-	if(form.paramPembayaran[0].checked)document.getElementById("iBayar").innerHTML = form.paramPembayaran[0].value;
-	else if(form.paramPembayaran[1].checked)document.getElementById("iBayar").innerHTML = form.paramPembayaran[1].value;
-	else if(form.paramPembayaran[2].checked)document.getElementById("iBayar").innerHTML = form.paramPembayaran[2].value;
-	else if(form.paramPembayaran[3].checked)document.getElementById("iBayar").innerHTML = form.paramPembayaran[3].value;
-	else document.getElementById("iBayar").innerHTML = "Lain-lain ("+form.PembayaranDLL.value+")";
+	if(form.paramPembayaran[0].checked) { 
+		document.getElementById("iBayar").innerHTML = form.paramPembayaran[0].value;
+	}
+	else if(form.paramPembayaran[1].checked) { 
+		document.getElementById("iBayar").innerHTML = form.paramPembayaran[1].value;
+	}
+	else if(form.paramPembayaran[2].checked) { 
+		document.getElementById("iBayar").innerHTML = form.paramPembayaran[2].value;
+	}
+	else if(form.paramPembayaran[3].checked) { 
+		document.getElementById("iBayar").innerHTML = form.paramPembayaran[3].value;
+	}
+	else { 
+		document.getElementById("iBayar").innerHTML = "Lain-lain ("+form.PembayaranDLL.value+")";
+	}
 
 	
 	document.getElementById("iLunas").innerHTML = parseDate(TglPelunasan);
 	
-	if(form.paramSTNK[0].checked)document.getElementById("iSerah").innerHTML = parseDate(tglPenyerahan) + " TANPA STNK";
-	else if(form.paramSTNK[1].checked)document.getElementById("iSerah").innerHTML = parseDate(tglPenyerahan) + " DENGAN STNK";
-	
+	if(form.paramSTNK[0].checked) { 
+		document.getElementById("iSerah").innerHTML = parseDate(tglPenyerahan) + " TANPA STNK";
+	}
+	else if(form.paramSTNK[1].checked) { 
+		document.getElementById("iSerah").innerHTML = parseDate(tglPenyerahan) + " DENGAN STNK";
+	}
 }
 
 function initPage(form)
@@ -447,7 +460,7 @@ function createTable()
 	var start = 1;
 	var day;
 	if(month1 == 1 && year1%4 == 0) {
-		day = febKabisat;
+		day = monthDayList[12];
 	}
 	else {
 		day = monthDayList[month1];
@@ -459,14 +472,12 @@ function createTable()
 	table += filledTable;
 	tableHeader += table;
 	document.getElementById("profil1").innerHTML = tableHeader;
-	document.getElementById("paramBulan1").style.visibility="visible";
-	document.getElementById("profil1").style.visibility="visible";
 	//month2
 	if(plus1Month) {
 		//tglTable.setDate(tglTable.getDate()+1);
 		var day2;
 		if(month2 == 1 && year2%4 ==0) {
-			day2 = febKabisat;
+			day2 = monthDayList[12];
 		}
 		else {
 			day2 = monthDayList[month2];
@@ -478,8 +489,14 @@ function createTable()
 		table2 += filledTable2;
 		tableHeader2 += table2;
 		document.getElementById("profil2").innerHTML = tableHeader2;
+		document.getElementById("paramBulan1").style.visibility="visible";
+		document.getElementById("profil1").style.visibility="visible";
 		document.getElementById("paramBulan2").style.visibility="visible";
 		document.getElementById("profil2").style.visibility="visible";
+	}
+	else {
+		document.getElementById("paramBulan1").style.visibility="visible";
+		document.getElementById("profil1").style.visibility="visible";
 	}
 }
 
@@ -502,6 +519,7 @@ function fillTable(day, header)
 			}
 		}
 		
+		//fill element
 		table += fillTableElement();
 		
 		//closing
@@ -511,8 +529,11 @@ function fillTable(day, header)
 		else if(i%7 == 0) {
 			table += "</tr>" + "<tr>";
 		}
+		
+		//plus day
 		tglTable.setDate(tglTable.getDate()+1);
 	}
+	
 	return table;
 }
 
