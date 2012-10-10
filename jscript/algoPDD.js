@@ -62,7 +62,10 @@ function insertInform(){
 	else document.getElementById("iTelHP").innerHTML = telpon;
 	document.getElementById("iTypeWarna").innerHTML = NamaKendaraan + " / " + WarnaKendaraan;
 	
-	if(form.paramPembayaran[0].checked) { 
+	if(form.paramPembayaran[0].checked && form.paramBedaBank.checked) { 
+		document.getElementById("iBayar").innerHTML = form.paramPembayaran[0].value + " -  Beda Bank";
+	}
+	else if(form.paramPembayaran[0].checked) { 
 		document.getElementById("iBayar").innerHTML = form.paramPembayaran[0].value;
 	}
 	else if(form.paramPembayaran[1].checked) { 
@@ -211,7 +214,7 @@ function setData()
 
 	}
 	else if(flagPembayaran == "cash") {
-			for(i=0;i<2;i++) {
+			for(i=0;i<1;i++) {
 			TglPelunasan.setDate(TglPelunasan.getDate()+1);
 			if(TglPelunasan.getDay()==6 || TglPelunasan.getDay()==0 )i--;
 			else {
