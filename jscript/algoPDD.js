@@ -50,6 +50,8 @@ function insertInform(){
 	WarnaKendaraan = form.warnaKendaraan.value;
 	PembayaranDll = form.PembayaranDLL.value;
 	
+	document.title = NamaPelanggan;
+	
 	document.getElementById("iNoTaSPK").innerHTML = NoSPK + " / " + parseDate(tglRede);
 	document.getElementById("iNamaPel").innerHTML = NamaPelanggan;
 	
@@ -167,7 +169,7 @@ function setData()
 		tglMobilRede = new Date(tglMDP);
 		for(i=0;i<2;i++){
 			tglMobilRede.setDate(tglMobilRede.getDate()+1);
-			if(tglMobilRede.getDay()==0 )i--;
+			if(tglMobilRede.getDay()==0 || tglMobilRede.getDay()==6 )i--;
 			else {
 				if(arrayDate.indexOf(parseDateSlash(tglMobilRede)) != -1)i--;
 			}
@@ -198,22 +200,13 @@ function setData()
 	
 	//MDP or Ready
 	if(flagMDPRede == "mdp") {
-		TglPelunasan = new Date(tglMobilRede);	
+		if(flagPembayaran == "cash")TglPelunasan = new Date(tglMobilRede);
+		else TglPelunasan = new Date(tglRede);
 	}
 	else TglPelunasan = new Date(tglRede);
 	
-	if(flagPembayaran == "cash" && form.paramBedaBank.checked) {
-		for(i=0;i<3;i++){
-			TglPelunasan.setDate(TglPelunasan.getDate()+1);
-			if(TglPelunasan.getDay()==6 || TglPelunasan.getDay()==0 )i--;
-			else {
-				if(arrayDate.indexOf(parseDateSlash(TglPelunasan)) != -1)
-					i--;
-			}
-		}
-
-	}
-	else if(flagPembayaran == "cash") {
+	
+	if(flagPembayaran == "cash") {
 			for(i=0;i<1;i++) {
 			TglPelunasan.setDate(TglPelunasan.getDate()+1);
 			if(TglPelunasan.getDay()==6 || TglPelunasan.getDay()==0 )i--;
@@ -228,24 +221,89 @@ function setData()
 			TglPelunasan.setDate(TglPelunasan.getDate()+1);
 			if(TglPelunasan.getDay()==6 || TglPelunasan.getDay()==0 ) {
 				i--;
-			}
+			} 
 			else {
 				if(arrayDate.indexOf(parseDateSlash(TglPelunasan)) != -1) {
 					i--;
 				}
 			}
 		}
+		if(flagMDPRede == "mdp"){
+			if(tglMobilRede.getDate() == TglPelunasan.getDate() && tglMobilRede.getMonth() == TglPelunasan.getMonth()){
+			for(i=0;i<1;i++){
+				TglPelunasan.setDate(TglPelunasan.getDate()+1);
+				if(TglPelunasan.getDay()==6 || TglPelunasan.getDay()==0 )i--;
+				else {
+					if(arrayDate.indexOf(parseDateSlash(TglPelunasan)) != -1)i--;
+					}
+				}
+			}	
+		}
+		
 	}
 	//----------------------------------------------------------------------
 	
 	//tanggal AFI
-	TglAFI = new Date(TglPelunasan);
-	for(i=0;i<1;i++){
-			TglAFI.setDate(TglAFI.getDate()+1);
-			if(TglAFI.getDay()==6 || TglAFI.getDay()==0 )i--;
-			else {
-				if(arrayDate.indexOf(parseDateSlash(TglAFI)) != -1)i--;
+	
+	if(flagPembayaran == "cash" && form.paramBedaBank.checked) {
+		TglAFI = new Date(TglPelunasan);
+		for(i=0;i<3;i++){
+				TglAFI.setDate(TglAFI.getDate()+1);
+				if(TglAFI.getDay()==6 || TglAFI.getDay()==0 )i--;
+				else {
+					if(arrayDate.indexOf(parseDateSlash(TglAFI)) != -1)i--;
+				}
+		}
+	}
+	else if(flagPembayaran == "cash"){
+		TglAFI = new Date(TglPelunasan);
+		for(i=0;i<1;i++){
+				TglAFI.setDate(TglAFI.getDate()+1);
+				if(TglAFI.getDay()==6 || TglAFI.getDay()==0 )i--;
+				else {
+					if(arrayDate.indexOf(parseDateSlash(TglAFI)) != -1)i--;
+				}
+		}
+	}
+	else if(flagMDPRede == "ready"){
+		TglAFI = new Date(TglPelunasan);
+		for(i=0;i<1;i++){
+				TglAFI.setDate(TglAFI.getDate()+1);
+				if(TglAFI.getDay()==6 || TglAFI.getDay()==0 )i--;
+				else {
+					if(arrayDate.indexOf(parseDateSlash(TglAFI)) != -1)i--;
+				}
+		}
+	}
+	else{
+		TglAFI = new Date(tglMobilRede);
+		for(i=0;i<1;i++){
+				TglAFI.setDate(TglAFI.getDate()+1);
+				if(TglAFI.getDay()==6 || TglAFI.getDay()==0 )i--;
+				else {
+					if(arrayDate.indexOf(parseDateSlash(TglAFI)) != -1)i--;
+				}
+		}
+		if(TglAFI.getDate() == TglPelunasan.getDate() && TglAFI.getMonth() == TglPelunasan.getMonth()){
+			for(i=0;i<1;i++){
+				TglAFI.setDate(TglAFI.getDate()+1);
+				if(TglAFI.getDay()==6 || TglAFI.getDay()==0 )i--;
+				else {
+					if(arrayDate.indexOf(parseDateSlash(TglAFI)) != -1)i--;
+				}
 			}
+		}
+		
+	}
+	
+	if( TglAFI.getDate() == TglPelunasan.getDate() && TglAFI.getMonth() == TglPelunasan.getMonth()){
+		for(i=0;i<1;i++){
+				TglAFI.setDate(TglAFI.getDate()+1);
+				if(TglAFI.getDay()==6 || TglAFI.getDay()==0 )i--;
+				else {
+					if(arrayDate.indexOf(parseDateSlash(TglAFI)) != -1)i--;
+				}
+		}
 	}
 	//----------------------------------------------------------------------
 	
@@ -570,13 +628,20 @@ function fillTableElement()
 	
 	//MDP or Ready
 	if(flagMDPRede == "mdp") {
+		
+		
+		
 		//tglMDP
 		if(tglTable.getDate() == tglMDP.getDate() && tglTable.getMonth() == tglMDP.getMonth()) {
-			return "<td id='d" + i +"'style='background:url(images/background_mdp.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+			if(TglPelunasan.getDate() == tglMDP.getDate() && TglPelunasan.getMonth() == tglMDP.getMonth()) {
+			return "<td id='d" + i +"'style='background:url(images/background_mdp-lns.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+		}
+			else {return "<td id='d" + i +"'style='background:url(images/background_mdp.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";}
 		}
 		if(tglTable.getDate() == tglMobilRede.getDate() && tglTable.getMonth() == tglMobilRede.getMonth()) {
 			return "<td id='d" + i +"'style='background:url(images/background_ready.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
 		}
+		
 	}
 	
 	//tglSPK
