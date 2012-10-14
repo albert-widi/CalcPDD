@@ -632,9 +632,6 @@ function fillTableElement()
 		}
 			else {return "<td id='d" + i +"'style='background:url(images/background_mdp.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";}
 		}
-		if(tglTable.getDate() == tglMobilRede.getDate() && tglTable.getMonth() == tglMobilRede.getMonth()) {
-			return "<td id='d" + i +"'style='background:url(images/background_ready.png) no-repeat; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
-		}
 		
 	}
 	
