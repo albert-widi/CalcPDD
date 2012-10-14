@@ -621,16 +621,10 @@ function fillDayName(dayNum)
 
 function fillTableElement()
 {
-	//monday blocking
-	if(tglTable.getDay() == 0) {
-		return "<td id='d" + i +"' style='background-color:blue; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
-	}
+	
 	
 	//MDP or Ready
 	if(flagMDPRede == "mdp") {
-		
-		
-		
 		//tglMDP
 		if(tglTable.getDate() == tglMDP.getDate() && tglTable.getMonth() == tglMDP.getMonth()) {
 			if(TglPelunasan.getDate() == tglMDP.getDate() && TglPelunasan.getMonth() == tglMDP.getMonth()) {
@@ -676,7 +670,12 @@ function fillTableElement()
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////
-							
+	//monday blocking
+	if(tglTable.getDay() == 0) {
+		return "<td id='d" + i +"' style='background-color:blue; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'></p></td>";
+	}	
+		
+		
 	//Tgl Libur
 	if(arrayDate.indexOf(parseDateSlash(tglTable)) != -1){
 		return "<td id='d" + i +"' style='background-color:red; color:white;'><div id='mini-Date'><span>" + i + "</span></div><p id='isi" + i + "'>Libur</p></td>";
