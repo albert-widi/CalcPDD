@@ -36,6 +36,7 @@ var flagMDPRede;
 var month1Name;
 var month2Name;
 var plus1Month = false;
+var plusExplanation = false;
 
 //table
 var tableHeader;
@@ -512,10 +513,27 @@ function createTable()
 	var year1 = tglRede.getFullYear();
 	var month2 = tglPenyerahan.getMonth();
 	var year2 = tglPenyerahan.getFullYear();
+	var explanation;
+
+    //temporary
+	var tmpMonth1 = +month1 + 1;
+	var tmpMonth2 = +month1 + 2;
+
 	document.getElementById("paramBulan1").innerHTML = monthNames[month1];
-	if(month1 != month2) {
-		document.getElementById("paramBulan2").innerHTML = monthNames[month2];
+	if (month1 == month2) {
+	    document.getElementById("paramBulan2").innerHTML = monthNames[month2];
+	}
+	else if(tmpMonth1 == month2) {
+		document.getElementById("paramBulan2").innerHTML = monthNames[tmpMonth1];
 		plus1Month = true;
+	}
+	else if(tmpMonth2 == month2) {
+	    if (tmpMonth1 == TglIN.getMonth || tmpMonth1 == TglDR.getMonth() || tmpMonth1 == TglAFI.getMonth()) {
+			document.getElementById("paramBulan2").innerHTML = monthNames[tmpMonth1];
+			plus1Month = true;
+		}
+		explanation = fillExplanation(tmpMonth2);
+		plusExplanation = true;
 	}
 
 	var start = 1;
@@ -531,8 +549,6 @@ function createTable()
 	var table = "<tr>";
 	var filledTable = fillTable(day, 1);
 	table += filledTable;
-	tableHeader += table;
-	document.getElementById("profil1").innerHTML = tableHeader;
 	//month2
 	if(plus1Month) {
 		//tglTable.setDate(tglTable.getDate()+1);
@@ -541,13 +557,18 @@ function createTable()
 			day2 = monthDayList[12];
 		}
 		else {
-			day2 = monthDayList[month2];
+			day2 = monthDayList[tmpMonth1];
 		}
 		
 		tableHeader2 = "<table border='1px' width='700px' height='390px'>" + "<tr>";
 		var table2 = "<tr>";
 		var filledTable2 = fillTable(day2, 2);
 		table2 += filledTable2;
+		if(plusExplanation == true) {
+		    document.getElementById("lebihDate").innerHTML = explanation;
+		}
+		tableHeader += table;
+		document.getElementById("profil1").innerHTML = tableHeader;
 		tableHeader2 += table2;
 		document.getElementById("profil2").innerHTML = tableHeader2;
 		document.getElementById("paramBulan1").style.visibility="visible";
@@ -556,9 +577,33 @@ function createTable()
 		document.getElementById("profil2").style.visibility="visible";
 	}
 	else {
+	    if (plusExplanation == true) {
+	        document.getElementById("lebihDate").innerHTML = explanation;
+	    }
+	    tableHeader += table;
+	    document.getElementById("profil1").innerHTML = tableHeader;
 		document.getElementById("paramBulan1").style.visibility="visible";
 		document.getElementById("profil1").style.visibility="visible";
 	}
+}
+
+function fillExplanation(monthExp) {
+    var table = "";
+    if (monthExp == TglDR.getMonth()) {
+        table += "<span>Tanggal DR: </span>" +
+				 "<span>" + parseDate(TglDR) + "</span><br/>";
+    }
+
+    if (monthExp == TglIN.getMonth()) {
+		table += "<span>Tanggal IN : </span>" +
+				 "<span>" + parseDate(TglIN) + "</span><br/>";
+	}
+
+	if(monthExp == tglPenyerahan.getMonth()) {
+	    table += "<span>Tanggal Delivery : </span>" +
+				 "<span>" + parseDate(tglPenyerahan) + "</span><br/>";
+	}
+	return table;
 }
 
 function fillTable(day, header)
