@@ -520,13 +520,17 @@ function createTable()
 	var tmpMonth2 = +month1 + 2;
 
 	document.getElementById("paramBulan1").innerHTML = monthNames[month1];
+	
+	//if in 1 month
 	if (month1 == month2) {
 	    document.getElementById("paramBulan2").innerHTML = monthNames[month2];
 	}
+	//if 2 month
 	else if(tmpMonth1 == month2) {
 		document.getElementById("paramBulan2").innerHTML = monthNames[tmpMonth1];
 		plus1Month = true;
 	}
+	//if more than 2 month
 	else if(tmpMonth2 == month2) {
 	    if (tmpMonth1 == TglIN.getMonth || tmpMonth1 == TglDR.getMonth() || tmpMonth1 == TglAFI.getMonth()) {
 			document.getElementById("paramBulan2").innerHTML = monthNames[tmpMonth1];
@@ -536,7 +540,6 @@ function createTable()
 		plusExplanation = true;
 	}
 
-	var start = 1;
 	var day;
 	if(month1 == 1 && year1%4 == 0) {
 		day = monthDayList[12];
@@ -571,6 +574,8 @@ function createTable()
 		document.getElementById("profil1").innerHTML = tableHeader;
 		tableHeader2 += table2;
 		document.getElementById("profil2").innerHTML = tableHeader2;
+		
+		//set visible to selected ID
 		document.getElementById("paramBulan1").style.visibility="visible";
 		document.getElementById("profil1").style.visibility="visible";
 		document.getElementById("paramBulan2").style.visibility="visible";
@@ -582,27 +587,31 @@ function createTable()
 	    }
 	    tableHeader += table;
 	    document.getElementById("profil1").innerHTML = tableHeader;
+	    
+	    //set visible to selected ID
 		document.getElementById("paramBulan1").style.visibility="visible";
 		document.getElementById("profil1").style.visibility="visible";
 	}
 }
 
 function fillExplanation(monthExp) {
-    var table = "";
+    var table = "<table>";
     if (monthExp == TglDR.getMonth()) {
-        table += "<span>Tanggal DR: </span>" +
-				 "<span>" + parseDate(TglDR) + "</span><br/>";
+        table += "<tr><td>Tanggal DR</td> <td>:</td>" +
+				 "<td>" + parseDate(TglDR) + "</td></tr>";
     }
 
     if (monthExp == TglIN.getMonth()) {
-		table += "<span>Tanggal IN : </span>" +
-				 "<span>" + parseDate(TglIN) + "</span><br/>";
+        table += "<tr><td>Tanggal IN</td> <td>:</td>" +
+				 "<td>" + parseDate(TglIN) + "</td></tr>";
 	}
 
-	if(monthExp == tglPenyerahan.getMonth()) {
-	    table += "<span>Tanggal Delivery : </span>" +
-				 "<span>" + parseDate(tglPenyerahan) + "</span><br/>";
+	if (monthExp == tglPenyerahan.getMonth()) {
+        table += "<tr><td>Tanggal Delivery</td> <td>:</td>" +
+				 "<td>" + parseDate(tglPenyerahan) + "</td></tr>";
 	}
+	
+	table += "</table>";
 	return table;
 }
 

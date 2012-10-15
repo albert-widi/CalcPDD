@@ -239,8 +239,23 @@ li:first-child{
 	width:300px;
 }
 
+/* lebihDate */
+#lebihDate {
+	float:left;
+	position:relative;
+	display:block;
+	padding-left:20px;
+	margin-top:15px;
+	margin-left:90px;
+	font-size:15px;
+	font-weight:bold;
+	width: 673px;
+	border: solid;
+}
 
-
+#lebihDate td:first-child {
+	width: 200px;
+}
 
 
 
