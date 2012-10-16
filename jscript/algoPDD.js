@@ -1,3 +1,8 @@
+/*
+ * algoPDD.js
+ * Copyright Albert Widiatmoko & Yuddistira Kiki - 2012
+ */
+
 //global var
 var tempDateMDP = form.dateMDP.value;
 var tempDateRede = form.dateReady.value;
@@ -69,34 +74,35 @@ function insertInform(){
 		document.getElementById("iBayar").innerHTML = form.paramPembayaran[0].value + " -  Beda Bank";
 	}
 	else if(form.paramPembayaran[0].checked) { 
-		document.getElementById("iBayar").innerHTML = form.paramPembayaran[0].value;
+		document.getElementById("iBayar").innerHTML = form.paramPembayaran[0].value.toUpperCase();
 	}
 	else if(form.paramPembayaran[1].checked) { 
-		document.getElementById("iBayar").innerHTML = form.paramPembayaran[1].value;
+		document.getElementById("iBayar").innerHTML = form.paramPembayaran[1].value.toUpperCase();
 	}
 	else if(form.paramPembayaran[2].checked) { 
-		document.getElementById("iBayar").innerHTML = form.paramPembayaran[2].value;
+		document.getElementById("iBayar").innerHTML = form.paramPembayaran[2].value.toUpperCase();
 	}
 	else if(form.paramPembayaran[3].checked) { 
-		document.getElementById("iBayar").innerHTML = form.paramPembayaran[3].value;
+		document.getElementById("iBayar").innerHTML = form.paramPembayaran[3].value.toUpperCase();
 	}
 	else { 
-		document.getElementById("iBayar").innerHTML = "Lain-lain ("+form.PembayaranDLL.value+")";
+		document.getElementById("iBayar").innerHTML = "Lain-lain ("+form.PembayaranDLL.value.toUpperCase()+")";
 	}
 
 	
 	document.getElementById("iLunas").innerHTML = parseDate(TglPelunasan);
 	
 	if(form.paramSTNK[0].checked) { 
-		document.getElementById("iSerah").innerHTML = parseDate(tglPenyerahan) + " TANPA STNK";
+		document.getElementById("iSerah").innerHTML = parseDate(tglPenyerahan) + " - TANPA STNK";
 	}
 	else if(form.paramSTNK[1].checked) { 
-		document.getElementById("iSerah").innerHTML = parseDate(tglPenyerahan) + " DENGAN STNK";
+		document.getElementById("iSerah").innerHTML = parseDate(tglPenyerahan) + " - DENGAN STNK";
 	}
 }
 
 function initPage(form)
 {
+	document.getElementById("lebihDate").style.visibility="hidden";
 	document.getElementById("profil1").style.visibility="hidden";
 	document.getElementById("profil2").style.visibility="hidden";
 	document.getElementById("paramBulan1").style.visibility="hidden";
@@ -569,6 +575,7 @@ function createTable()
 		table2 += filledTable2;
 		if(plusExplanation == true) {
 		    document.getElementById("lebihDate").innerHTML = explanation;
+		    document.getElementById("lebihDate").style.visibility="visible";
 		}
 		tableHeader += table;
 		document.getElementById("profil1").innerHTML = tableHeader;
@@ -584,6 +591,7 @@ function createTable()
 	else {
 	    if (plusExplanation == true) {
 	        document.getElementById("lebihDate").innerHTML = explanation;
+	        document.getElementById("lebihDate").style.visibility="visible";
 	    }
 	    tableHeader += table;
 	    document.getElementById("profil1").innerHTML = tableHeader;
