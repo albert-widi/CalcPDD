@@ -648,7 +648,7 @@ function fillTable(day, header)
 		if(i == 1) {
 			for(r = 0; r < 7; r++) {
 				if(tglTable.getDay() != jsDayList[r]) {
-					table += "<td id='d" + i +"'><div id='mini-Date'><span></span></div><p id='isi" + i + "'></p></td>";
+					table += "<td id='d" + i +"'><div id='mini-Date'><span>x</span></div><p id='isi" + i + "'></p></td>";
 				}
 				else {
 					break;
