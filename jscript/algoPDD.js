@@ -17,6 +17,8 @@ var PembayaranDll = form.PembayaranDLL.value;
 var monthNames = ["Januari", "Februari", "Maret", "April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 //0 for %4 february
 var monthDayList = [31,28,31,30,31,30,31,31,30,31,30,31,29];
+var dayList = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+var jsDayList = [1, 2, 3, 4, 5, 6, 0];
 
 //holiday data
 var arrayDate = [];
@@ -554,7 +556,18 @@ function createTable()
 		day = monthDayList[month1];
 	}
 	
-	tableHeader = "<table border='1px' width='700px' height='390px'>" + "<tr>";
+	var dayName = "";
+	//createDayName
+	for(i = 1; i <= 7; i++) {
+		if(i == 7) {
+			dayName += "<th>" + dayList[0] + "</th>";
+		}
+		else {
+			dayName += "<th>" + dayList[i] + "</th>";
+		}
+	}
+	
+	tableHeader = "<table border='1px' width='700px' height='390px'>" + "<tr>" + dayName;;
 	var table = "<tr>";
 	var filledTable = fillTable(day, 1);
 	table += filledTable;
@@ -569,7 +582,7 @@ function createTable()
 			day2 = monthDayList[tmpMonth1];
 		}
 		
-		tableHeader2 = "<table border='1px' width='700px' height='390px'>" + "<tr>";
+		tableHeader2 = "<table border='1px' width='700px' height='390px'>" + "<tr>" + dayName;
 		var table2 = "<tr>";
 		var filledTable2 = fillTable(day2, 2);
 		table2 += filledTable2;
@@ -628,33 +641,34 @@ function fillTable(day, header)
 	var table = "";
 	var hStart = 0;
 	var tmpH = 0;
-	var tmpDayName;
+	var breakDay = false;
+	var tmpNumber = 1;;
 	
-	for(i = 1; i <= day; i++) {
-		//day name
-		if(i <= 7) {
-			tmpDayName = fillDayName(tglTable.getDay());
-			if(header == 1) {
-				tableHeader += "<th>" + tmpDayName + "</th>";
-			}
-			else {
-				tableHeader2 += "<th>" + tmpDayName + "</th>";
+	for(i = 1; i <= day; i++) {		
+		if(i == 1) {
+			for(r = 0; r < 7; r++) {
+				if(tglTable.getDay() != jsDayList[r]) {
+					table += "<td id='d" + i +"'><div id='mini-Date'><span></span></div><p id='isi" + i + "'></p></td>";
+				}
+				else {
+					break;
+				}
+				tmpNumber++;
 			}
 		}
 		
-		//fill element
 		table += fillTableElement();
-		
 		//closing
-		if(i%7 == 0 && i == day) {
+		if(tmpNumber%7 == 0 && tmpNumber == day) {
 			table += "</tr></table>";
 		}
-		else if(i%7 == 0) {
+		else if(tmpNumber%7 == 0) {
 			table += "</tr>" + "<tr>";
 		}
 		
 		//plus day
 		tglTable.setDate(tglTable.getDate()+1);
+		tmpNumber++;
 	}
 	
 	return table;
