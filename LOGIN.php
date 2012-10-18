@@ -10,7 +10,7 @@
 <div name = "loginContainer">
     <div">Login</div>
     <div>
-        <form method = "post">
+        <form>
         <table>
             <tr>
                 <td>Username</td>
@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <td>&nbsp;</td>
-                <td><button type = "submit" onclick="login();">Login</button></td>
+                <td><input type="button" value ="Login" onclick="login()" /></td>
             </tr>
         </table>
         </form>
