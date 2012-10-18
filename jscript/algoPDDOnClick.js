@@ -1,14 +1,14 @@
 //global var
-var tempDateMDP = form.dateMDP.value;
-var tempDateRede = form.dateReady.value;
+var tempDateMDP;
+var tempDateRede;
 //input tanpa temp
 var NoSPK = form.nomorSPK.value;
-var NamaPelanggan = form.namaPelanggan.value;
-var telpon = form.noTelepon.value;
-var hp = form.noHP.value;
-var NamaKendaraan = form.namaKendaraan.value;
-var WarnaKendaraan = form.warnaKendaraan.value;
-var PembayaranDll = form.PembayaranDLL.value;
+var NamaPelanggan;
+var telpon;
+var hp;
+var NamaKendaraan;
+var WarnaKendaraan;
+var PembayaranDll;
 var monthNames = ["Januari", "Februari", "Maret", "April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 //0 for %4 february
 var monthDayList = [31,28,31,30,31,30,31,31,30,31,30,31,29];

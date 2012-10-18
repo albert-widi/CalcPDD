@@ -13,7 +13,7 @@
 	{
 		checkForm(form);
 		document.getElementById("errorContainer").innerHTML = "";
-		var open = window.open("RESULT.html");
+		var open = window.open("RESULT.php");
 		open.form = form;
 	}
 	
