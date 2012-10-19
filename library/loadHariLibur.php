@@ -1,0 +1,3 @@
+<?php
+$sqlStatement = "SELECT * FROM";
+?>

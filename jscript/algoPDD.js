@@ -44,6 +44,38 @@ var plusExplanation = false;
 var tableHeader;
 var tableHeader2;
 
+function saveData() {
+	var xmlhttp;
+	var status;
+	
+	var username = document.getElementById("loginname").value;
+	var password = document.getElementById("loginpass").value;
+
+	if(window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	}
+	else {
+		xmlhttp = new ActiveXObject("Mircrosoft.XMLHTTP");
+	}
+	
+	xmlhttp.open("GET", "res/saveProcess.php?tglRede=" + tglRede + "&tglMDP=" + tglMDP + "&tglLunas=" + tglPelunasan + "&tglAFI=" + tglAFI + 
+				 "&tglDR=" + tglDR + "&tglIN=" + tglIN + "&tglMDP=" + tglPenyerahan, true);
+	xmlhttp.send(null);
+	
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			status = xmlhttp.responseText;
+			if(status == "OK") {
+				window.location = "HOME.php";
+			}
+			else {
+				document.getElementById("errorContainer").innerHTML = "Invalid username or password";
+				throw "err20";
+			}
+		}
+	}
+}
+
 function insertInform(){
 	NoSPK = form.nomorSPK.value;
 	NamaPelanggan = form.namaPelanggan.value;
