@@ -18,17 +18,19 @@ $date;
 if(isset($holidayData)) {
 	foreach($holidayData as $value) {
 		$date = explode("/", $value);
-		$holidayArrangedData[$date[2]][$date[1]] = $date[0];
+		$holidayArrangedData[$date[2]][$date[1]][] = $date[0];
 		unset($date);
 	}
 }
 
-//foreach($holidayData as $value) echo $value."<br />";
-
+//tolong dibuat outputnya jadi sorted
 foreach($holidayArrangedData as $key1 => $value1) {
 	echo $key1."<br />";
 	foreach($value1 as $key2 => $value2) {
-		echo $key2." : ".$value2."<br />";
+		echo "Bulan : ".$key2."<br />";
+		foreach($value2 as $value3) {
+			echo $value3."<br />";
+		}
 	}
 }
 ?>
