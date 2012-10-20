@@ -44,13 +44,48 @@ var plusExplanation = false;
 var tableHeader;
 var tableHeader2;
 
-function saveData() {
+function savePDD() {
 	var xmlhttp;
 	var status;
 	
-	var username = document.getElementById("loginname").value;
-	var password = document.getElementById("loginpass").value;
-
+	//var tmp
+	var tmpTglRede = parseDateSlash(tglRede);
+	var tmpTglMDP;
+	if(flagMDPRede != "ready") {
+		tmpTglMDP = parseDateSlash(tglMDP);
+	}
+	else {
+		tmpTglMDP = "";
+	}
+	var tmpTglPelunasan = parseDateSlash(TglPelunasan);
+	var tmpTglAFI = parseDateSlash(TglAFI);
+	var tmpTglDR = parseDateSlash(TglDR);
+	var tmpTglIN = parseDateSlash(TglIN);
+	var tmpTglPenyerahan = parseDateSlash(tglPenyerahan);
+	var tmpTelpon;
+	if(telpon == "Telepon") {
+		var tmpTelpon = "";
+	}
+	else {
+		var tmpTelpon = telpon;
+	}
+	
+	var tmpHP;
+	if(hp == "HP") {
+		tmpHP = "";
+	}
+	else {
+		tmpHP = hp;
+	}
+	
+	var denganTanpaSTNK;
+	if(form.paramSTNK[0].checked) { 
+		var denganTanpaSTNK =  " - TANPA STNK";
+	}
+	else if(form.paramSTNK[1].checked) { 
+		var denganTanpaSTNK = " - DENGAN STNK";
+	}
+	
 	if(window.XMLHttpRequest) {
 		xmlhttp = new XMLHttpRequest();
 	}
@@ -58,22 +93,21 @@ function saveData() {
 		xmlhttp = new ActiveXObject("Mircrosoft.XMLHTTP");
 	}
 	
-	xmlhttp.open("GET", "res/saveProcess.php?tglRede=" + tglRede + "&tglMDP=" + tglMDP + "&tglLunas=" + tglPelunasan + "&tglAFI=" + tglAFI + 
-				 "&tglDR=" + tglDR + "&tglIN=" + tglIN + "&tglMDP=" + tglPenyerahan, true);
+	xmlhttp.open("GET", "res/saveProcess.php?tglrede=" + tmpTglRede + "&tglmdp=" + tmpTglMDP + "&tgllunas=" + tmpTglPelunasan + "&tglafi=" + tmpTglAFI + 
+				 "&tgldr=" + tmpTglDR + "&tglin=" + tmpTglIN + "&tgldelivery=" + tmpTglPenyerahan + "&namapelanggan=" + NamaPelanggan +
+				 "&telpon=" + tmpTelpon + "&hp=" + tmpHP  + "&nospk=" + NoSPK + "&namakendaraan=" + NamaKendaraan + "&warnakendaaraan=" + WarnaKendaraan +
+				 "&stnk=" + denganTanpaSTNK, true);
 	xmlhttp.send(null);
 	
-	xmlhttp.onreadystatechange=function() {
+	status = xmlhttp.responseText;
+	alert(status);
+	
+	/*xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			status = xmlhttp.responseText;
-			if(status == "OK") {
-				window.location = "HOME.php";
-			}
-			else {
-				document.getElementById("errorContainer").innerHTML = "Invalid username or password";
-				throw "err20";
-			}
+			alert(status);
 		}
-	}
+	}*/
 }
 
 function insertInform(){
@@ -140,7 +174,6 @@ function initPage(form)
 	setData(form);
 	createTable(form);
 	insertInform();
-	
 }
 
 function loadHolidayData()
