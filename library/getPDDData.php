@@ -1,27 +1,29 @@
 <?php
-function getPDDData() {
-	$pddData = array(array());
-	$sqlStatement = "SELECT id, namaCustomer, tanggalDelivery FROM dataPDD WHERE sales = '" + $_SESSION['user'] + "'";
-	$result = mysql_query($sqlStatement);
-	if($result) {
-		while($row = mysql_fetch_array($result)) {
-			//data declaration
-			$pddData['undefined'] = $row['undefined'];
+include "connection.php";
+$pddData = array(array());
+$sqlStatement = "SELECT idSave, DATE_FORMAT(tglSPK, '%d/%m/%Y') as tglSPK, DATE_FORMAT(tglMDP, '%d/%m/%Y') as tglMDP, 
+				 DATE_FORMAT(tglLunas, '%d/%m/%Y') as tglLunas, DATE_FORMAT(tglAFI, '%d/%m/%Y') as tglAFI, DATE_FORMAT(tglDR, '%d/%m/%Y') as tglDR,
+				 DATE_FORMAT(tglIN, '%d/%m/%Y') as tglIN, DATE_FORMAT(tglDelivery, '%d/%m/%Y') as tglIN, namaSales, namaCustomer, noTelp, noHP, 
+				 noSPK, namaKendaraan, warnaKendaraan, stnk
+				 FROM dataPDD WHERE namaSales = 'albert' AND idSave = 7";
+				 
+$result = mysql_query($sqlStatement);
+$data;
+if($result) {
+	while($row = mysql_fetch_array($result)) {
+		foreach($row as $key => $value) {
+			if(!is_numeric($key)) {
+				$data[$key] = $value;
+			}
 		}
-	}
-	else {
-		$pddData['error'] = "No Data";
+		
+		/*foreach($data as $key => $value) {
+			echo $key." = ".$value."<br />";
+		}*/
 	}
 }
-
-function getCustomerData($id) {
-	$customerData = array();
-	$sqlStatement = "SELECT * FROM dataPDD WHERE id = " + id + " AND sales = '" + $_SESISON['user'] + "'";
-	$result = mysql_result($sqlStatement);
-	if($reuslt) {
-		while($row = mysql_fetch_array($result)) {
-			$customerData['undefined'] = $row['undefined'];
-		}
-	}
+else {
+	echo $sqlStatement;
 }
 ?>
+
