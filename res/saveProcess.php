@@ -2,22 +2,53 @@
 session_start();
 include '../library/connection.php';
 
-$tglMDP = $_GET['tglmdp'];
-$tglRede = $_GET['tglrede'];
-$tglLunas = $_GET['tgllunas'];
-$tglAFI = $_GET['tglafi'];
-$tglDR = $_GET['tgldr'];
-$tglIN = $_GET['tglin'];
-$tglDelivery = $_GET['tgldelivery'];
+$tglMDP;
+if($_GET['tglmdp'] != "") {
+	$tglMDP = parseMysqlDate($_GET['tglmdp']);
+}
+else {
+	$tglMDP = "";
+}
+$tglSPK = parseMysqlDate($_GET['tglrede']);
+$tglLunas = parseMysqlDate($_GET['tgllunas']);
+$tglAFI = parseMysqlDate($_GET['tglafi']);
+$tglDR = parseMysqlDate($_GET['tgldr']);
+$tglIN = parseMysqlDate($_GET['tglin']);
+$tglDelivery = parseMysqlDate($_GET['tgldelivery']);
 $namaPelanggan = $_GET['namapelanggan'];
 $noTelp = $_GET['telpon'];
 $noHP = $_GET['hp'];
 $noSPK = $_GET['nospk'];
 $namaKendaraan = $_GET['namakendaraan'];
-$warnaKendaraan = $_GET['warnaKendaraan'];
+$warnaKendaraan = $_GET['warnakendaraan'];
 $stnk = $_GET['stnk'];
+$sqlStatement;
 
-//$sqlStatement = "INSERT INTO dataPDD(namaPelanggan, tglRede, tglMDP, tglLunas, tglAFI, 
+if($tglMDP == "") {
+	$sqlStatement =  "INSERT INTO dataPDD(tglSPK, tglLunas, tglAFI, tglDR, tglIN, tglDelivery, namaSales, namaCustomer, noTelp, noHP,
+					 noSPK, namaKendaraan, warnaKendaraan, stnk)
+					 VALUES('".$tglSPK."', '".$tglLunas."', '".$tglAFI."', '".$tglDR."', '".$tglIN."', '".$tglDelivery."', '".$_SESSION['user']
+					 ."', '".$namaPelanggan."', '".$noTelp."', '".$noHP."', '".$noSPK."', '".$namaKendaraan."', '".$warnaKendaraan."', '".$stnk."')";
+}
+else {
+	$sqlStatement = "INSERT INTO dataPDD(tglSPK, tglMDP, tglLunas, tglAFI, tglDR, tglIN, tglDelivery, namaSales, namaCustomer, noTelp, noHP,
+					 noSPK, namaKendaraan, warnaKendaraan, stnk)
+					 VALUES('".$tglSPK."', '".$tglMDP."', '".$tglLunas."', '".$tglAFI."', '".$tglDR."', '".$tglIN."', '".$tglDelivery."', '".$_SESSION['user']
+					 ."', '".$namaPelanggan."', '".$noTelp."', '".$noHP."', '".$noSPK."', '".$namaKendaraan."', '".$warnaKendaraan."', '".$stnk."')";
+}
 
-//echo "MDP : ".$tglMDP.", Rede : ".$tglRede.", Lunas : ".$tglLunas.", AFI : ".$tglAFI.", DR : ".$tglDR.", IN : ".$tglIN.", Delivery : ".$tglDelivery;
+$result = mysql_query($sqlStatement);
+if($result) {
+	echo "OK";
+}
+else {
+	echo $sqlStatement;
+	//echo "FAILED";
+}
+
+function parseMysqlDate($date) {
+	$tmp = explode("/", $date);
+	$return = $tmp[2]."/".$tmp[1]."/".$tmp[0];
+	return $return;
+}
 ?>

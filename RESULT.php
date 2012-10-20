@@ -123,7 +123,7 @@ include "library/userHandler.php";
        		<input type = "button" onClick="savePDD();" value = "SAVE" style = "width: 120px; height: 45px;"/>
         </div>   
         
-        <div align="center" style="width:100%; height:30px; background-color:red; margin-top:10px; text-align:center; padding-top:2px;">
+        <div id = "savedoc" align="center" style="width:100%; height:30px; background-color:red; margin-top:10px; text-align:center; padding-top:2px;">
         	This Document Not Saved Yet
         </div>
        

@@ -95,7 +95,7 @@ function savePDD() {
 	
 	xmlhttp.open("GET", "res/saveProcess.php?tglrede=" + tmpTglRede + "&tglmdp=" + tmpTglMDP + "&tgllunas=" + tmpTglPelunasan + "&tglafi=" + tmpTglAFI + 
 				 "&tgldr=" + tmpTglDR + "&tglin=" + tmpTglIN + "&tgldelivery=" + tmpTglPenyerahan + "&namapelanggan=" + NamaPelanggan +
-				 "&telpon=" + tmpTelpon + "&hp=" + tmpHP  + "&nospk=" + NoSPK + "&namakendaraan=" + NamaKendaraan + "&warnakendaaraan=" + WarnaKendaraan +
+				 "&telpon=" + tmpTelpon + "&hp=" + tmpHP  + "&nospk=" + NoSPK + "&namakendaraan=" + NamaKendaraan + "&warnakendaraan=" + WarnaKendaraan +
 				 "&stnk=" + denganTanpaSTNK, true);
 	xmlhttp.send(null);
 	
@@ -105,7 +105,13 @@ function savePDD() {
 	/*xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			status = xmlhttp.responseText;
-			alert(status);
+			if(status == "OK") {
+				document.getElementById("savedoc").style.backgroundColor = "green";
+				document.getElementById("savedoc").innerHTML = "Document Saved";
+			}
+			else {
+				document.getElementById("savedoc").innerHTML = "Failed to save Document";
+			}
 		}
 	}*/
 }
