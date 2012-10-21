@@ -1,3 +1,0 @@
-<?php
-$sqlStatement = "SELECT * FROM";
-?>
