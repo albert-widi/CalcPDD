@@ -99,10 +99,8 @@ function savePDD() {
 				 "&stnk=" + denganTanpaSTNK, true);
 	xmlhttp.send(null);
 	
-	status = xmlhttp.responseText;
-	alert(status);
 	
-	/*xmlhttp.onreadystatechange=function() {
+	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			status = xmlhttp.responseText;
 			if(status == "OK") {
@@ -113,7 +111,7 @@ function savePDD() {
 				document.getElementById("savedoc").innerHTML = "Failed to save Document";
 			}
 		}
-	}*/
+	}
 }
 
 function insertInform(){
