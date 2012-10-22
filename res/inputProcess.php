@@ -12,11 +12,11 @@ if ($newHolidayDate != "")
 
 if ($result)
 {
-	echo "succedd";
+	header("location: ../HOLIDAYLIST.php");
 }
 else
 {	
-	echo "";
+	echo "Gagal";
 }
 ?>
 

@@ -175,7 +175,8 @@ include "library/userHandler.php";
             <div  align="center"><img src="images/logo plato.jpg" width="215" height="43"/></div>
             <div id="menubar">
                <ul >
-               	<li><a href="HOME.html">CALCULATOR</a></li>
+               	<li><a href="HOME.php">HOME</a></li>
+                <li><a href="HOLIDAYLIST.php">HOLIDAY</a></li>
                 </ul>
             </div>
         </div>
